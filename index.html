@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <title>LinguaSonnet</title>
+  <title>LinguaSonnet</title>
 </head>
+
 <body>
-    <nav class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav>
+  <nav class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
 
-    <h1>LinguaSonnet</h1>
+  <h1>LinguaSonnet</h1>
 
-    <div class="container">
-        <section class="definition-container">
-            <label for="inputText">Enter a word:</label><br>
-            <textarea id="inputText" placeholder="Type here..."></textarea><br>
-        </section>
+  <div class="container">
+    <section class="definition-container">
+      <label for="inputText">Enter a word:</label><br>
+      <textarea id="inputText" placeholder="Type here..."></textarea><br>
+    </section>
 
-        <section class="result-container">
-            <button onclick="Defination()">Generate Definition</button>
-            <h3>Definition:</h3>
-            <div id="DefinationResult"></div>
-        </section>
+    <section class="result-container">
+      <button onclick="Defination()">Generate Definition</button>
+      <h3>Definition:</h3>
+      <div id="DefinationResult"></div>
+    </section>
 
-        <section class="poetry-container">
-            <button onclick="generatePoetry()">Generate Poetry</button>
-            <h3>Poetry:</h3>
-            <div id="poetryResult"></div>
-        </section>
-    </div>
+    <section class="poetry-container">
+      <button id="generate-poem">Generate Poetry</button>
+      <h3>Poetry:</h3>
+      <div id="poetryResult">
+        <p id="poem-lines"></p>
+      </div>
+    </section>
+  </div>
 
-    <hr>
+  <hr>
 
-    <script src="/assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
+
 </html>
