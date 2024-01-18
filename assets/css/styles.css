@@ -1,9 +1,12 @@
 body, h3, p, button, textarea {
     margin: 0;
     padding: 0;
+    
   }
   h1 {
     text-align: center;
+    font-family: 'Rochester', cursive;
+    font-size: 96px;
   }
   body {
     font-family: Arial, sans-serif;
@@ -11,6 +14,9 @@ body, h3, p, button, textarea {
     color: #333;
   }
   
+
+
+
   /* Navbar Styles */
   .navbar {
     background-color: #333;
@@ -33,18 +39,28 @@ body, h3, p, button, textarea {
   
   
   /* Definition Container Styles */
+
+
+  .card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+
+
+
   .definition-container {
-    margin-bottom: 20px;
+    padding-top: 20px
+    /* margin-bottom: 20px;
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   }
   
   
   #inputText {
-    width: 100%;
+    width: 50%;
     padding: 8px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -70,7 +86,7 @@ body, h3, p, button, textarea {
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   }
   
   .poetry-container {
@@ -79,7 +95,7 @@ body, h3, p, button, textarea {
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   }
   #DefinationResult, #poetryResult {
     padding: 10px;
