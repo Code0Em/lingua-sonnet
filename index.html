@@ -28,6 +28,8 @@
   <section class="definition-container">
       <label for="inputText">Enter a word:</label><br>
       <textarea id="inputText" placeholder="Type here..."></textarea><br>
+      <button id="save-btn">Save Word</button>
+      <p id="error-msg"></p>
   </section>
 </div> </div>    
 
@@ -49,7 +51,7 @@
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <a href="#" class="btn btn-primary">Generate Poetry</a>
+                  <a href="#" class="btn btn-primary" id="generate-poem">Generate Poetry</a>
                   <section class="poetry-container">
                    <h3>Poetry:</h3>
                     <div id="poetryResult">
