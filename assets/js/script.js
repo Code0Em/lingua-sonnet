@@ -15,9 +15,11 @@
 
 // TASK 8: Create a function which “fetches” the word's definition from the API.
 
-// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called.
+// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called. Add if/else statement to to validate the user’s input and display an error message if the input’s blank (and stop the call on the "fetch" function).
 
 // TASK 10: Create a function which displays a definition of the user's word (and call it within the above event listener).
+
+// TASK 11: Add if/else statement to fetch function on Dictionary API, so that an error message is displayed to user if the API returns an error.
 
 // **GLOBAL VARIABLES**
 // FOR TESTING PURPOSES
@@ -102,6 +104,14 @@ function getDefinition() {
     fetch(definitionQueryUrl)
         // Waits for the data to be returned (and then runs codeblock).
         .then(function (response) {
+            // If the API responds with an error (e.g. can't find a definition for the user's word), run this codeblock.
+            // *CREDIT: Worked below code out thanks to Stack Overflow (2016) Fetch resolves even if 404? (https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404).
+            if (!response.ok) {
+                // Displays an error message (i.e. sets the text of the p element).
+                definitionText.textContent = "Sorry, we don't know that word."
+                // FOR TESTING PURPOSES 
+                console.log("dictionary API error");
+            }
             // Formats the returned data into a usable form, using json method.
             return response.json();
         })
@@ -118,17 +128,10 @@ function getDefinition() {
 
 // TASK 10: Displays a definition of the user's word.
 function displayDefinition(definition) {
-    // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
-    if (userSavedWord.length == 0) {
-        // Displays an error message (i.e. sets the text of the p element).
-        definitionText.textContent = "Please save a word above."
-        // If user's inputted a word, run this codeblock.
-    } else {
-        // Sets text of p element to the definition.
-        definitionText.textContent = definition;
-        // FOR TESTING PURPOSES 
-        console.log("found definition");
-    }
+    // Sets text of p element to the definition.
+    definitionText.textContent = definition;
+    // FOR TESTING PURPOSES 
+    console.log("found definition");
 }
 
 // **EVENT LISTENERS**
@@ -172,9 +175,17 @@ poemBtn.addEventListener("click", function (e) {
 definitionBtn.addEventListener("click", function (e) {
     // Prevents the default behaviour (i.e. reloading the page).
     e.preventDefault();
-    // Calls function to get a definition from the Dictionary API.
-    getDefinition();
+    // Clears any previous definition or error message from p element.
+    definitionText.textContent = "";
     // FOR TESTING PURPOSES.
     console.log("definition button pressed");
+    // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
+    if (userSavedWord.length == 0) {
+        // Displays an error message (i.e. sets the text of the p element).
+        definitionText.textContent = "Please save a word above."
+        // If user's inputted a word, run this codeblock.
+    } else {
+        // Calls function to get a definition from the Dictionary API.
+        getDefinition();
+    }
 });
-
