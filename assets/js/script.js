@@ -148,3 +148,28 @@ poemBtn.addEventListener("click", function (e) {
 });
 
 
+// Add a reference to the loading icon element
+const loadingIcon = document.getElementById("loading-icon");
+
+// ...
+
+// Modify the getPoem function to show and hide the loading icon
+function getPoem() {
+  // Show the loading icon
+  loadingIcon.style.display = "block";
+
+  const poemQueryUrl = "https://poetrydb.org/random";
+
+  fetch(poemQueryUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const lines = JSON.stringify(data[0].lines);
+      checkPoem(lines);
+    })
+    .finally(function () {
+      // Hide the loading icon regardless of success or failure
+      loadingIcon.style.display = "none";
+    });
+}
