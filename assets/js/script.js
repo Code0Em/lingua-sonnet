@@ -11,6 +11,11 @@
 
 // TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word).
 
+// TASK 7: Construct API url for Dictionary. (Endpoint will be user's word to return definition).
+
+// TASK 8: Create a function which “fetches” the word's definition from the API.
+
+// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called.
 
 // **GLOBAL VARIABLES**
 // FOR TESTING PURPOSES
@@ -29,28 +34,6 @@ let count = 0;
 let userSavedWord = "";
 
 // **FUNCTIONS AND EVENT LISTENERS**
-// TASK 5: Listens for a click event on the save button and calls function.
-saveBtn.addEventListener("click", function (e) {
-    // Prevents the default behaviour (i.e. reloading the page).
-    e.preventDefault();
-    // Gets what the user's inputted into the word input (i.e. the value of input element).
-    const userWord = inputText.value;
-    // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
-    if (userWord.length == 0) {
-        // Displays error message (i.e. sets the inner HTML of the p element).
-        // *! Could we make this a model instead?
-        errorMsg.innerHTML = "Please enter a word."
-        // If the search input isn't empty, run this codeblock:
-    } else {
-        // Displays confirmation message.
-        errorMsg.innerHTML = `"${userWord}" has been saved, now it's time to generate a definition or a poem!`
-        // FOR TESTING PURPOSES 
-        userSavedWord = userWord;
-        console.log(userWord);
-        console.log(userSavedWord);
-    }
-});
-
 // TASK 2: Query URL for PoetryDB, set to return a random poem.
 function getPoem() {
     // TASK 1: Gets a random poem from the Poetry API.
@@ -71,7 +54,7 @@ function getPoem() {
             // FOR TESTING PURPOSES 
             //console.log(lines);
         });
-};
+    };
 
 // TASK 4: Checks if random poem contains user’s word and (if yes) displays on page or (if not) generates another random poem (up to max of ten in total).
 function checkPoem(lines) {
@@ -105,7 +88,32 @@ function checkPoem(lines) {
     }
 }
 
+// TASK 7: Gets a definition from Dictionary API.
+const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`;
+
 // **EVENT LISTENERS**
+// TASK 5: Listens for a click event on the save button and calls function.
+saveBtn.addEventListener("click", function (e) {
+    // Prevents the default behaviour (i.e. reloading the page).
+    e.preventDefault();
+    // Gets what the user's inputted into the word input (i.e. the value of input element).
+    const userWord = inputText.value;
+    // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
+    if (userWord.length == 0) {
+        // Displays error message (i.e. sets the inner HTML of the p element).
+        // *! Could we make this a model instead?
+        errorMsg.innerHTML = "Please enter a word."
+        // If the search input isn't empty, run this codeblock:
+    } else {
+        // Displays confirmation message.
+        errorMsg.innerHTML = `"${userWord}" has been saved, now it's time to generate a definition or a poem!`
+        // FOR TESTING PURPOSES 
+        userSavedWord = userWord;
+        console.log(userWord);
+        console.log(userSavedWord);
+    }
+});
+
 // TASK 3: Listens for a click event on the poem button and calls function.
 poemBtn.addEventListener("click", function (e) {
     // Prevents the default behaviour (i.e. reloading the page).
