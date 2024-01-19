@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rochester&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/reset.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 
@@ -16,15 +19,25 @@
 </head>
 
 <body>
-  <nav class="navbar">
+  <!-- <nav class="navbar">
     <a href="#">Home</a>
     <a href="#">About</a>
     <a href="#">Contact</a>
-  </nav>
+  </nav> -->
+
+
+<!-- bootstrap nav -->
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <p class="navbar-brand"><img src="./assets/img/icon-quill.png"><span id="logo">LinguaSonnet</span>
+</nav>
+
+
+
+  <!--------hero/jumbotron------------------------------------>
   <div class="p-5 mb-4 heroBackground">
-    <div class="container-fluid py-5 jumboCopy text-center">
-  <h1>LinguaSonnet</h1>
-  <p>Some descriptive text... Lorem Ipsum dolor</p>
+    <div class="container-fluid py-5 jumboCopy text-left">
+  <h1 class="large">Type a word.</h1>
+  <p>Then learn some words and find them in poetry!</p>
   <section class="definition-container">
       <label for="inputText">Enter a word:</label><br>
       <textarea id="inputText" placeholder="Type here..."></textarea><br>
@@ -32,6 +45,7 @@
       <p id="error-msg"></p>
   </section>
 </div> </div>    
+<!--------------------------------------------------------------------->   
 
   <div class="container">
 
