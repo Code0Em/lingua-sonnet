@@ -147,4 +147,13 @@ poemBtn.addEventListener("click", function (e) {
     console.log("count is "+count);
 });
 
+// TASK 9: Listens for a click event on the definition button and calls function.
+definitionBtn.addEventListener("click", function (e) {
+    // Prevents the default behaviour (i.e. reloading the page).
+    e.preventDefault();
+    // Calls function to get a definition from the Dictionary API.
+    getDefinition();
+    // FOR TESTING PURPOSES.
+    console.log("definition button pressed");
+});
 
