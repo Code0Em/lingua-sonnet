@@ -21,6 +21,12 @@
 
 // TASK 11: Add if/else statement to fetch function on Dictionary API, so that an error message is displayed to user if the API returns an error.
 
+// TASK 12: Create a function which creates a new word history button, if there is not one already created for the word.
+
+// TASK 13: Create function which saves the user's word to local storage. UPDATE: Incorporated this into existing event listener (at TASK 5) to keep code DRY.
+
+// TASK 14: Create an event listener which retrieves the user's word name from the browser and displays a confirmation message, when the user selects the word history button.
+
 // **GLOBAL VARIABLES**
 // FOR TESTING PURPOSES
 const testWord = "love";
@@ -37,12 +43,16 @@ const poemResults = document.getElementById("poem-result");
 const loadingSpinnerP = poemResults.children[0];
 const definitionResults = document.getElementById("definition-result");
 const loadingSpinnerD = definitionResults.children[0];
+const wordHistSection = document.getElementById("word-history");
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
 let count = 0;
 
 // An "empty" variable to "collect" the user's word.
 let userSavedWord = "";
+
+// Empty array to "collect" text of word history buttons.
+let btnsText = [];
 
 // **FUNCTIONS**
 // TASK 2: Query URL for PoetryDB, set to return a random poem.
@@ -147,6 +157,30 @@ function displayDefinition(definition) {
     console.log("found definition");
 }
 
+// TASK 12: Creates word history buttons.
+function createBtn() {
+    // Checks if array (i.e. the text of the word history buttons) includes user's words (i.e. if this word already has a button, run this codeblock).
+    if (btnsText.includes(userSavedWord)) {
+        // TESTING
+        console.log("already got this button");
+        // Gets us out of the function (i.e. returns nothing).
+        return
+    } else {
+        // Creates a new button.
+        const newBtn = document.createElement("button");
+        // Sets the text of the button to the user's word.
+        newBtn.textContent = userSavedWord;
+        // Adds classes to button (for Bootstrap styling and for event listener).
+        newBtn.classList.add("btn", "btn-light", "word-history");
+        // Appends button to section element.
+        wordHistSection.append(newBtn);
+        // Pushes the button's text up to array (so we can check it/when it's searched again).
+        btnsText.push(newBtn.textContent);
+        // TESTING
+        console.log(btnsText);
+    }
+}
+
 // **EVENT LISTENERS**
 // TASK 5: Listens for a click event on the save button and calls function.
 saveBtn.addEventListener("click", function (e) {
@@ -165,10 +199,15 @@ saveBtn.addEventListener("click", function (e) {
         userSavedWord = userWord;
         // If the search input isn't empty, run this codeblock:
     } else {
-        // Displays confirmation message.
-        errorMsg.innerHTML = `"${userWord}" has been saved, now it's time to generate a definition or a poem!`
-        // FOR TESTING PURPOSES 
+        // Sets userSavedWord variable to the words that the user's inputted.
         userSavedWord = userWord;
+        // Displays confirmation message.
+        errorMsg.innerHTML = `"${userSavedWord}" has been saved, now it's time to generate a definition or a poem!`
+        // TASK 13: Saves the user's word to the browser, setting the key name and the value to the word itself.
+        localStorage.setItem(`${userSavedWord}`, JSON.stringify(userSavedWord));
+        // Calls function to display word history button.
+        createBtn();
+        // FOR TESTING PURPOSES 
         console.log(userWord);
         console.log(userSavedWord);
     }
@@ -208,5 +247,26 @@ definitionBtn.addEventListener("click", function (e) {
     } else {
         // Calls function to get a definition from the Dictionary API.
         getDefinition();
+    }
+});
+
+// TASK 14: Listens for a click event on a word history button (using event delegation) and calls function.
+wordHistSection.addEventListener("click", function (e) {
+    // Checks if the element that's been clicked on has class of word-history (i.e. if it's a word history button, run this codeblock).
+    if (e.target.matches(".word-history")) {
+        // Declares clickedWord variable and sets this equal to text of the button (so that this can be passed as key name).
+        const clickedWord = e.target.textContent;
+        // Gets the word from the browser.
+        const historyWord = JSON.parse(localStorage.getItem(`${clickedWord}`));
+        // Sets the historyWord (from the browser) as userSavedWord
+        userSavedWord = historyWord;
+        // TESTING
+        console.log(userSavedWord);
+        // Displays confirmation message.
+        errorMsg.innerHTML = `"${userSavedWord}" has been retrieved, now it's time to generate a definition or a poem!`
+        // Clears any word, definition and/or poem (i.e. from previous word).
+        inputText.value = "";
+        definitionText.textContent = "";
+        poemText.textContent = "";
     }
 });

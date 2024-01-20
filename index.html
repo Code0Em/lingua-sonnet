@@ -34,9 +34,10 @@
       <li class="navbar-brand"><img src="./assets/img/icon-quill.png"></li>
       <li id="logo">LinguaSonnet</li>
       <li class="history-link">
-        <a href="./history.html">Word History</a>
+        <!-- ES: I updated the link to navigates user to word history section of page. -->
+        <a href="#word-history">Word History</a>
       </li>
-      <!--------- ES: I moved the contact link back into the nav-bar. I'm not sure if that's what we wanted though, so please feel free to delete it --------->
+      <!-- ES: I moved the contact link back into the nav-bar. I'm not sure if that's what we wanted though, so please feel free to delete it -->
       <li class="history-link">
         <a href="#">Contact</a>
       </li>
@@ -83,7 +84,8 @@
       <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card">
           <div class="card-body">
-            <a href="#" class="btn btn-success" id="generate-definition">Generate Definition</a>
+            <!-- ES: Changed this from link element to a button element-->
+            <button class="btn btn-success" id="generate-definition">Generate Definition</button>
             <section class="result-container">
               <h3>Definition:</h3>
               <div id="definition-result">
@@ -102,7 +104,8 @@
         <!-- POEM CARD -->
         <div class="card">
           <div class="card-body">
-            <a href="#" class="btn btn-primary" id="generate-poem">Generate Poetry</a>
+            <!-- ES: Changed this from link element to a button element-->
+            <button class="btn btn-primary" id="generate-poem">Generate Poetry</button>
             <section class="poetry-container">
               <h3>Poetry:</h3>
               <div id="poem-result">
@@ -118,6 +121,11 @@
       </div>
     </div>
   </div>
+
+  <!-- WORD HISTORY SECTION (for word history buttons) -->
+  <section class="text-center" id="word-history">
+    <h2>Previously Searched Words</h2>
+  </section>
 
   <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
