@@ -9,13 +9,17 @@
 
 // TASK 5: Create a function (with an event listener) which "gets" the user's word, when they enter a word and selects the save button. Within this, use an if/else statement to validate the user’s input and display an error message if the input’s blank.
 
-// TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word). UPDATE: Incorporated this into existing function to keep code DRY.
+// TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word). UPDATE: Incorporated this into existing function (at TASK 3) to keep code DRY.
 
 // TASK 7: Construct API url for Dictionary. (Endpoint will be user's word to return definition).
 
 // TASK 8: Create a function which “fetches” the word's definition from the API.
 
-// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called.
+// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called. Add if/else statement to to validate the user’s input and display an error message if the input’s blank (and stop the call on the "fetch" function).
+
+// TASK 10: Create a function which displays a definition of the user's word (and call it within the above event listener).
+
+// TASK 11: Add if/else statement to fetch function on Dictionary API, so that an error message is displayed to user if the API returns an error.
 
 // **GLOBAL VARIABLES**
 // FOR TESTING PURPOSES
@@ -28,6 +32,8 @@ const saveBtn = document.getElementById("save-btn");
 const errorMsg = document.getElementById("error-msg");
 // !Need to add this ID to html
 const definitionBtn = document.getElementById("generate-definition");
+// !Need to add this ID to html
+const definitionText = document.getElementById("definition");
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
 let count = 0;
@@ -56,7 +62,7 @@ function getPoem() {
             // FOR TESTING PURPOSES 
             //console.log(lines);
         });
-    };
+};
 
 // TASK 4: Checks if random poem contains user’s word and (if yes) displays on page or (if not) generates another random poem (up to max of ten in total).
 function checkPoem(lines) {
@@ -93,11 +99,19 @@ function checkPoem(lines) {
 // TASK 8: Query URL for Dictionary, set to return definition of user's word.
 function getDefinition() {
     // TASK 7: Gets a definition from Dictionary API.
-    const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`;
+    const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`
     // Runs the fetch method on the API query URL.
     fetch(definitionQueryUrl)
         // Waits for the data to be returned (and then runs codeblock).
         .then(function (response) {
+            // If the API responds with an error (e.g. can't find a definition for the user's word), run this codeblock.
+            // *CREDIT: Worked below code out thanks to Stack Overflow (2016) Fetch resolves even if 404? (https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404).
+            if (!response.ok) {
+                // Displays an error message (i.e. sets the text of the p element).
+                definitionText.textContent = "Sorry, we don't know that word."
+                // FOR TESTING PURPOSES 
+                console.log("dictionary API error");
+            }
             // Formats the returned data into a usable form, using json method.
             return response.json();
         })
@@ -105,10 +119,20 @@ function getDefinition() {
         .then(function (data) {
             // Gets the definition (as an array), and  ‘converts’ the array into JSON string.
             const definition = JSON.stringify(data[0].meanings[0].definitions[0].definition);
+            // Calls function to display definition of the user's word.
+            displayDefinition(definition);
             // FOR TESTING PURPOSES 
             console.log(definition);
         });
 };
+
+// TASK 10: Displays a definition of the user's word.
+function displayDefinition(definition) {
+    // Sets text of p element to the definition.
+    definitionText.textContent = definition;
+    // FOR TESTING PURPOSES 
+    console.log("found definition");
+}
 
 // **EVENT LISTENERS**
 // TASK 5: Listens for a click event on the save button and calls function.
@@ -144,7 +168,24 @@ poemBtn.addEventListener("click", function (e) {
     // FOR TESTING PURPOSES.
     console.log("poem button pressed");
     // FOR TESTING PURPOSES.
-    console.log("count is "+count);
+    console.log("count is " + count);
 });
 
-
+// TASK 9: Listens for a click event on the definition button and calls function.
+definitionBtn.addEventListener("click", function (e) {
+    // Prevents the default behaviour (i.e. reloading the page).
+    e.preventDefault();
+    // Clears any previous definition or error message from p element.
+    definitionText.textContent = "";
+    // FOR TESTING PURPOSES.
+    console.log("definition button pressed");
+    // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
+    if (userSavedWord.length == 0) {
+        // Displays an error message (i.e. sets the text of the p element).
+        definitionText.textContent = "Please save a word above."
+        // If user's inputted a word, run this codeblock.
+    } else {
+        // Calls function to get a definition from the Dictionary API.
+        getDefinition();
+    }
+});
