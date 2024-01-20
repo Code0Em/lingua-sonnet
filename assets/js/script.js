@@ -33,6 +33,10 @@ const inputText = document.getElementById("input-text");
 const errorMsg = document.getElementById("error-msg");
 const definitionBtn = document.getElementById("generate-definition");
 const definitionText = document.getElementById("definition");
+const poemResults = document.getElementById("poem-result");
+const loadingSpinnerP = poemResults.children[0];
+const definitionResults = document.getElementById("definition-result");
+const loadingSpinnerD = definitionResults.children[0];
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
 let count = 0;
@@ -77,6 +81,8 @@ function checkPoem(lines) {
         if (lines.includes(userSavedWord)) {
             // Sets text of p element to the poem.
             poemText.textContent = lines;
+            // Adds invisible class to Bootstrap spinner (so doesn't display this).
+            loadingSpinnerP.classList.add("invisible");
             // FOR TESTING PURPOSES 
             console.log("found poem");
             // If less than ten random poems have been generated (i.e. fetch function called less than ten times), run this codeblock.
@@ -85,12 +91,16 @@ function checkPoem(lines) {
             getPoem()
             // Adds one to fetch function count.
             count++
+            // Removes invisible class from Bootstrap spinner (so displays this).
+            loadingSpinnerP.classList.remove("invisible");
             // FOR TESTING PURPOSES.
             console.log(count);
             // If random poem doesn't contain user's word and ten random poems have already been generated, run this codeblock.
         } else {
             // Sets text of p element to an error message.
             poemText.textContent = `Sorry, we can’t find a poem right now. Please try again later.`
+            // Adds invisible class to Bootstrap spinner (so doesn't display this anymore).
+            loadingSpinnerP.classList.add("invisible");
         }
     }
 }
@@ -106,6 +116,8 @@ function getDefinition() {
             // If the API responds with an error (e.g. can't find a definition for the user's word), run this codeblock.
             // *CREDIT: Worked below code out thanks to Stack Overflow (2016) Fetch resolves even if 404? (https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404).
             if (!response.ok) {
+                // Adds invisible class to Bootstrap spinner (so doesn't display this).
+                loadingSpinnerD.classList.add("invisible");
                 // Displays an error message (i.e. sets the text of the p element).
                 definitionText.textContent = "Sorry, we don't know that word."
                 // FOR TESTING PURPOSES 
@@ -127,6 +139,8 @@ function getDefinition() {
 
 // TASK 10: Displays a definition of the user's word.
 function displayDefinition(definition) {
+    // Adds invisible class to Bootstrap spinner (so doesn't display this).
+    loadingSpinnerD.classList.add("invisible");
     // Sets text of p element to the definition.
     definitionText.textContent = definition;
     // FOR TESTING PURPOSES 
@@ -142,10 +156,12 @@ saveBtn.addEventListener("click", function (e) {
     const userWord = inputText.value;
     // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
     if (userWord.length == 0) {
+        // Adds invisible class to Bootstrap spinner (so doesn't display this).
+        loadingSpinnerD.classList.add("invisible");
         // Displays error message (i.e. sets the inner HTML of the p element).
         // *! Could we make this a model instead?
         errorMsg.innerHTML = "Please enter a word."
-        // Resets the userSavedWord to the new (empty) userWord (i.e. so that any previously entered word is removed)
+        // Resets the userSavedWord to the new (empty) userWord (i.e. so that any previously entered word is removed).
         userSavedWord = userWord;
         // If the search input isn't empty, run this codeblock:
     } else {
@@ -178,10 +194,14 @@ definitionBtn.addEventListener("click", function (e) {
     e.preventDefault();
     // Clears any previous definition or error message from p element.
     definitionText.textContent = "";
+    // Removes invisible class from Bootstrap spinner (so displays this).
+    loadingSpinnerD.classList.remove("invisible");
     // FOR TESTING PURPOSES.
     console.log("definition button pressed");
     // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
     if (userSavedWord.length == 0) {
+        // Adds invisible class to Bootstrap spinner (so doesn't display this).
+        loadingSpinnerD.classList.add("invisible");
         // Displays an error message (i.e. sets the text of the p element).
         definitionText.textContent = "Please save a word above."
         // If user's inputted a word, run this codeblock.
