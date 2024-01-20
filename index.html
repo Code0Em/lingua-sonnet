@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rochester&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/reset.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 
@@ -16,15 +19,50 @@
 </head>
 
 <body>
-  <nav class="navbar">
+  
+  <!-- <nav class="navbar">
     <a href="#">Home</a>
     <a href="#">About</a>
+    <a href="./history">Word History</a>
+  </nav> -->
+
+<!-- bootstrap nav -->
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <!-- <p class="navbar-brand"><img src="./LinguaSonnet_files/icon-quill.png"><span id="logo">LinguaSonnet</span>
+</p> -->
+<ul>
+  <li>
+  <a class="navbar-brand" href="#"><img src="./assets/img/icon-quill.png"><span id="logo-text">LinguaSonnet</span></span></a> </li>
+
+  <li class="history-link">
+    <a href="./history">Word History</a>
+  </li>
+</ul>
+</nav>
+
+  <!-- <nav class="navbar sticky-top navbar-dark bg-dark">
+    <ul>
+      <li>
+      <a class="navbar-brand" href="#"><img src="./assets/img/icon-quill.png">LinguaSonnet</a>
+      <li>
+        <a href="#">Home</a>
+    </li>
+      <li>
+          <a href="#">About</a>
+      </li>
+      <li>
+        <a href="./history">Word History</a>
+      </li>
+    </ul>
+  </nav> -->
+
+  <!--------HERO CODE THAT WORKS------------------------------------>
     <a href="#">Contact</a>
   </nav>
   <div class="p-5 mb-4 heroBackground">
-    <div class="container-fluid py-5 jumboCopy text-center">
-  <h1>LinguaSonnet</h1>
-  <p>Some descriptive text... Lorem Ipsum dolor</p>
+    <div class="container-fluid py-5 jumboCopy text-left">
+  <h1 class="large">Type a word.</h1>
+  <p class="slogan" >Then learn what they mean and find them in poems!</p>
   <section class="definition-container">
       <label for="inputText">Enter a word:</label><br>
       <textarea id="inputText" placeholder="Type here..."></textarea><br>
@@ -33,13 +71,15 @@
   </section>
 </div> </div>    
 
+
+
   <div class="container">
 
     <div class="row">
       <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card">
           <div class="card-body">
-            <a href="#" class="btn btn-success">Generate Definition</a>
+            <a href="#" class="btn btn-success id="generate-definition">Generate Definition</a>
              <section class="result-container">
                <h3>Definition:</h3>
                 <div id="DefinationResult"></div>
