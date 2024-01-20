@@ -29,10 +29,9 @@ const testWord = "love";
 const poemText = document.getElementById("poem-lines");
 const poemBtn = document.getElementById("generate-poem");
 const saveBtn = document.getElementById("save-btn");
+const inputText = document.getElementById("input-text");
 const errorMsg = document.getElementById("error-msg");
-// !Need to add this ID to html
 const definitionBtn = document.getElementById("generate-definition");
-// !Need to add this ID to html
 const definitionText = document.getElementById("definition");
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
@@ -146,6 +145,8 @@ saveBtn.addEventListener("click", function (e) {
         // Displays error message (i.e. sets the inner HTML of the p element).
         // *! Could we make this a model instead?
         errorMsg.innerHTML = "Please enter a word."
+        // Resets the userSavedWord to the new (empty) userWord (i.e. so that any previously entered word is removed)
+        userSavedWord = userWord;
         // If the search input isn't empty, run this codeblock:
     } else {
         // Displays confirmation message.
