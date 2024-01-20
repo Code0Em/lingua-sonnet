@@ -171,7 +171,7 @@ function createBtn() {
         // Sets the text of the button to the user's word.
         newBtn.textContent = userSavedWord;
         // Adds classes to button (for Bootstrap styling and for event listener).
-        newBtn.classList.add("btn", "btn-light", "word-history");
+        newBtn.classList.add("btn", "hist-btn", "word-history");
         // Appends button to section element.
         wordHistSection.append(newBtn);
         // Pushes the button's text up to array (so we can check it/when it's searched again).
