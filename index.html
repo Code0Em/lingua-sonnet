@@ -21,17 +21,11 @@
 
 <body>
 
-  <!--------- OLDER VERSION OF NAV BAR --------->
-  <!-- <nav class="navbar">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="./history">Word History</a>
-  </nav> -->
 
   <!-- BOOTSTRAP NAV BAR -->
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <ul>
-      <li class="navbar-brand"><img src="./assets/img/icon-quill.png"></li>
+      <li class="navbar-brand"><img src="./assets/img/icon-quill.svg"></li>
       <li id="logo">LinguaSonnet</li>
       <li class="history-link">
         <!-- ES: I updated the link to navigates user to word history section of page. -->
@@ -44,29 +38,14 @@
     </ul>
   </nav>
 
-  <!--------- OLDER VERSION OF NAV BAR --------->
-  <!-- <nav class="navbar sticky-top navbar-dark bg-dark">
-    <ul>
-      <li>
-      <a class="navbar-brand" href="#"><img src="./assets/img/icon-quill.png">LinguaSonnet</a>
-      <li>
-        <a href="#">Home</a>
-    </li>
-      <li>
-          <a href="#">About</a>
-      </li>
-      <li>
-        <a href="./history">Word History</a>
-      </li>
-    </ul>
-  </nav> -->
+
 
   <!--------- HERO CODE THAT WORKS --------->
-  </nav>
+  
   <div class="p-5 mb-4 heroBackground">
     <div class="container-fluid py-5 jumboCopy text-left">
       <h1 class="large">Type a word.</h1>
-      <p class="slogan">Then learn what they mean and find them in poems!</p>
+      <div class="subtitle">Let's learn the meaning of English words and see them appear in poetry!</div> <!--IE: changed p to div-->
       <section class="definition-container">
         <label for="input-text">Enter a word:</label><br>
         <!-- ES: Changed this to an input element, so that user can't input paragraphs. Also added max length (45 is longest word in English Dictionary) and added styling (see CSS) -->
@@ -85,7 +64,7 @@
         <div class="card">
           <div class="card-body">
             <!-- ES: Changed this from link element to a button element-->
-            <button class="btn btn-success" id="generate-definition">Generate Definition</button>
+            <button id="generate-definition">Generate Definition</button>
             <section class="result-container">
               <h3>Definition:</h3>
               <div id="definition-result">
@@ -105,7 +84,7 @@
         <div class="card">
           <div class="card-body">
             <!-- ES: Changed this from link element to a button element-->
-            <button class="btn btn-primary" id="generate-poem">Generate Poetry</button>
+            <button id="generate-poem">Generate Poetry</button>
             <section class="poetry-container">
               <h3>Poetry:</h3>
               <div id="poem-result">
@@ -124,8 +103,30 @@
 
   <!-- WORD HISTORY SECTION (for word history buttons) -->
   <section class="text-center" id="word-history">
-    <h2>Previously Searched Words</h2>
+    
+    <div class="container">
+      <div class="row" >
+        <div class="col-sm-12 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body word-history bg-light text-left ">
+              <h2 class="section-heading"><a id="history">Previously Searched Words</a></h2>
+              <svg width="30" height="30" viewBox="0 0 24 24" focusable="false">
+                <path d="M4 4v2.01C5.83 3.58 8.73 2 12.01 2 17.53 2 22 6.48 22 12s-4.47 10-9.99 10C6.48 22 2 17.52 2 12h2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8C9.04 4 6.47 5.61 5.09 8H8v2H2V4h2z"></path>
+                <path d="M13 12V6h-2v7l4.97 3.49 1.26-1.55z"></path>
+            </svg>
+             <button class="hist-btn">Amazing</button> <button class="hist-btn">Here</button> <button class="hist-btn">We</button> <button class="hist-btn">Are</button> <button class="hist-btn">Fire</button> <button class="hist-btn">Summer</button> 
+
+            </div>
+          </div>
+        </div>
+
+
+    
+      </div>
+    </div>
   </section>
+
+
 
   <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -138,17 +139,6 @@
         <span class="mb-3 mb-md-0 text-body-secondary">© 2024 LinguaSonnet</span>
       </div>
 
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#twitter"></use>
-            </svg></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#instagram"></use>
-            </svg></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#facebook"></use>
-            </svg></a></li>
-      </ul>
     </footer>
   </div>
 
