@@ -1,35 +1,37 @@
 :root {
-  --yellow: #FBC202; ;
+  --yellow: #FBC202;
+  ;
   --white: #ffffff;
   --aqua: #02f3fb;
   --blue: #35abcf;
   --bg-bottom: #8ecae6;
 
-  --cursive:'Rochester', cursive;;
+  --cursive: 'Rochester', cursive;
+  ;
   --serif: 'Solway', serif;
   --serif-body: 'Noto Serif', serif;
 
 }
 
-body  {
-    margin: 0;
-    padding: 0;  
-    background-color: #B0C4DE;
-  }
-  
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #B0C4DE;
+}
 
-  .ul {
-    list-style: none;
-  }
 
-  h1 {
-    text-align: left;
-    font-family: 'Solway', serif;
-    font-size: 96px;
-    
-  }
+.ul {
+  list-style: none;
+}
 
-  
+h1 {
+  text-align: left;
+  font-family: 'Solway', serif;
+  font-size: 96px;
+
+}
+
+
 /* ==============================Navbar Styles================== */
 
 
@@ -61,7 +63,8 @@ body  {
 
 
 .logo-icon {
-  margin-left: 50px; /* Adjust as needed */
+  margin-left: 50px;
+  /* Adjust as needed */
 }
 
 #logo-text {
@@ -71,50 +74,50 @@ body  {
 }
 
 .history-link {
-padding-right: 20px;
+  padding-right: 20px;
 }
 
 .navbar ul {
-list-style-type: none;
-margin:0;
-padding: 10px 20px; 
-display:inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 20px;
+  display: inline-block;
 }
 
-.right li{
+.right li {
   font-family: var(--serif);
   color: var(--white);
 }
 
 .navbar ul li {
-display: inline-block;
-margin-left: 5px;
-text-decoration: none;
+  display: inline-block;
+  margin-left: 5px;
+  text-decoration: none;
 }
 
-.navbar ul li  a {
+.navbar ul li a {
   color: var(--aqua);
   text-align: center;
   text-decoration: none;
 }
 
-.navbar ul li  a:hover {
+.navbar ul li a:hover {
   color: var(--yellow);
-} 
+}
 
 .navbar ul li a visited {
   text-decoration: none;
   color: var(--white);
-  }
+}
 
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   nav ul li {
-  display: inline;
-  font-size: 16px;
-  border-bottom: 1px solid var( --bg-color-light); 
-  padding-top: 14px;
+    display: inline;
+    font-size: 16px;
+    border-bottom: 1px solid var(--bg-color-light);
+    padding-top: 14px;
   }
-  }
+}
 
 /* ==============================Hero Styles================== */
 
@@ -126,51 +129,52 @@ h1 {
 }
 
 .heroBackground {
-background-image: url("../img/book-splash.png");
-background-position: cover;
-background-repeat: no-repeat;
-background-color: #212D49;
-color: var(--yellow);;
+  background-image: url("../img/book-splash.png");
+  background-position: cover;
+  background-repeat: no-repeat;
+  background-color: #212D49;
+  color: var(--yellow);
+  ;
 
 }
 
-.subtitle  {
-font-family: var(--serif-body);
-color: var(--white);
-font-weight: 100;
-line-height: 1.6;
+.subtitle {
+  font-family: var(--serif-body);
+  color: var(--white);
+  font-weight: 100;
+  line-height: 1.6;
 }
 
 inputText {
-font-family: var(--cursive);
+  font-family: var(--cursive);
 }
 
 label {
-font-family: var(--serif);
-color: var(--yellow);
+  font-family: var(--serif);
+  color: var(--yellow);
 }
 
 #save-btn {
-background-color: #EF4136;
+  background-color: #EF4136;
 }
 
 #save-btn:hover {
-background-color: var(--yellow);
-color: navy;
+  background-color: var(--yellow);
+  color: navy;
 }
 
 button {
-font-family: var(--serif);
+  font-family: var(--serif);
 }
 
 #errorMsg p {
-font-family: var(--cursive);
-background-color: var(--white); 
+  font-family: var(--cursive);
+  background-color: var(--white);
 }
 
 poemText {
-font-family: var(--serif);
-}  
+  font-family: var(--serif);
+}
 
 /* ==============================End of Hero Styles================== */
 
@@ -186,155 +190,155 @@ font-family: var(--serif);
   padding-bottom: 10px;
 }
 
-  /* Definition Container Styles */
-  
-  
-  .card {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  
-  
-  
-  .definition-container {
-    padding-top: 20px
+/* Definition Container Styles */
+
+
+.card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.definition-container {
+  padding-top: 20px
     /* margin-bottom: 20px;
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  }
-  
+}
 
-  #inputText {
-    width: 50%;
-    padding: 8px;
-    margin: 8px 0;
-    box-sizing: border-box;
-  }
-  
-  button {
-    font-family: var(--serif);
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-  }
-  
-  #generate-definition {
-    background-color: #4CAF50;
-  }
-    
-  #generate-definition:hover  {
-    background-color: #45a049;;
-  
-  }
-  
-  
-  /* button {
+
+#inputText {
+  width: 50%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+button {
+  font-family: var(--serif);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+#generate-definition {
+  background-color: #4CAF50;
+}
+
+#generate-definition:hover {
+  background-color: #45a049;
+  ;
+
+}
+
+
+/* button {
     background-color: #4CAF50;
       color: white;
   
   
     } */
-  button:hover {
-    background-color: 
-    }
-  
-  #generate-poem {
-    background-color: #2196F3;
-    color: white;
-  }
-    
-  #generate-poem:hover  {
-      background-color: #0b7dda;
-  }
-  
-  #save-btn {
-    background-color: #EF4136;
-      margin-bottom: 10px;
-      margin-top: 20px;
-  }
-    
-  #save-btn:hover {
-    background-color: var(--yellow);
-    color: navy;
-  }
-  
-  .hist-btn  {
-    background-color: var(--blue);
-    margin: 5px;
-    color: var(--white);
+button:hover {
+  background-color:
+}
 
-  }
-    
-  .hist-btn:hover {
-    background-color: var(--aqua);
-    color: navy;
-  }
-  
-    
-    /* Result Container Styles */
-  .result-container {
-      margin-bottom: 20px;
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    }
-    
-  .poetry-container {
-      margin-bottom: 20px;
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    }
-  #DefinationResult, #poetryResult {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    
-    /* Poetry Container Styles */
-    
-    
-  .card {
-    margin-bottom: 25px;
-  }  
-  
-    .poetry-container button {
-      background-color: #2196F3;
-      color: white;
-    }
-    
-    .poetry-container button:hover {
-      background-color: #0b7dda;
-    }
-    
-    .word-container {
-      margin-bottom: 20px;
-      max-width: 120px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-    }
-  
-    .history-container {
-      background-color: #4CAF50;
-      color: white;
-      padding: 5px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  
-  .bottom-half {
-    background-color: var(--white);
-  }
-  
-  
-  
+#generate-poem {
+  background-color: #2196F3;
+  color: white;
+}
+
+#generate-poem:hover {
+  background-color: #0b7dda;
+}
+
+#save-btn {
+  background-color: #EF4136;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+#save-btn:hover {
+  background-color: var(--yellow);
+  color: navy;
+}
+
+.hist-btn {
+  background-color: var(--blue);
+  margin: 5px;
+  color: var(--white);
+  font-family: var(--serif);
+}
+
+.hist-btn:hover {
+  background-color: var(--aqua);
+  color: navy;
+}
+
+
+/* Result Container Styles */
+.result-container {
+  margin-bottom: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.poetry-container {
+  margin-bottom: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+#DefinationResult,
+#poetryResult {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Poetry Container Styles */
+
+
+.card {
+  margin-bottom: 25px;
+}
+
+.poetry-container button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.poetry-container button:hover {
+  background-color: #0b7dda;
+}
+
+.word-container {
+  margin-bottom: 20px;
+  max-width: 120px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.history-container {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bottom-half {
+  background-color: var(--white);
+}

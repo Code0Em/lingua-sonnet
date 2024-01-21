@@ -27,6 +27,8 @@
 
 // TASK 14: Create an event listener which retrieves the user's word name from the browser and displays a confirmation message, when the user selects the word history button.
 
+// TASK 15: Create a bootstrap modal and add code to existing function(s) so it's triggered programmatically when required (e.g. when user doesn't enter a word).
+
 // **GLOBAL VARIABLES**
 // FOR TESTING PURPOSES
 const testWord = "love";
@@ -36,7 +38,7 @@ const poemText = document.getElementById("poem-lines");
 const poemBtn = document.getElementById("generate-poem");
 const saveBtn = document.getElementById("save-btn");
 const inputText = document.getElementById("input-text");
-const errorMsg = document.getElementById("error-msg");
+const confirmMsg = document.getElementById("confirm-msg");
 const definitionBtn = document.getElementById("generate-definition");
 const definitionText = document.getElementById("definition");
 const poemResults = document.getElementById("poem-result");
@@ -44,6 +46,13 @@ const loadingSpinnerP = poemResults.children[0];
 const definitionResults = document.getElementById("definition-result");
 const loadingSpinnerD = definitionResults.children[0];
 const wordHistSection = document.getElementById("word-history");
+const errorModal = new bootstrap.Modal("#error-modal");
+const errorMsg = document.getElementById("error-msg");
+
+// The text for error messages.
+const missingWord = "You haven't entered a word. Please enter a word."
+const noPoem = "Sorry, we can’t find a poem right now. Please try again later."
+const unknownWord = "Sorry, we don't know that word."
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
 let count = 0;
@@ -83,8 +92,10 @@ function checkPoem(lines) {
     poemText.textContent = "";
     // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
     if (userSavedWord.length == 0) {
-        // Displays an error message (i.e. sets the text of the p element).
-        poemText.textContent = "Please save a word above."
+        // TASK 15: Displays error modal.
+        errorModal.show();
+        // Displays error message in modal (i.e. sets the inner HTML of the p element).
+        errorMsg.innerHTML = missingWord;
         // If user's inputted a word, run this codeblock.
     } else {
         // If the random poem contains the user's word, run this codeblock.
@@ -107,8 +118,10 @@ function checkPoem(lines) {
             console.log(count);
             // If random poem doesn't contain user's word and ten random poems have already been generated, run this codeblock.
         } else {
-            // Sets text of p element to an error message.
-            poemText.textContent = `Sorry, we can’t find a poem right now. Please try again later.`
+            // TASK 15: Displays error modal.
+            errorModal.show();
+            // Displays error message in modal (i.e. sets the inner HTML of the p element).
+            errorMsg.innerHTML = noPoem;
             // Adds invisible class to Bootstrap spinner (so doesn't display this anymore).
             loadingSpinnerP.classList.add("invisible");
         }
@@ -128,10 +141,13 @@ function getDefinition() {
             if (!response.ok) {
                 // Adds invisible class to Bootstrap spinner (so doesn't display this).
                 loadingSpinnerD.classList.add("invisible");
-                // Displays an error message (i.e. sets the text of the p element).
-                definitionText.textContent = "Sorry, we don't know that word."
+                // TASK 15: Displays error modal.
+                errorModal.show();
+                // Displays error message in modal (i.e. sets the inner HTML of the p element).
+                errorMsg.innerHTML = unknownWord;
                 // FOR TESTING PURPOSES 
                 console.log("dictionary API error");
+                console.log(unknownWord);
             }
             // Formats the returned data into a usable form, using json method.
             return response.json();
@@ -192,9 +208,10 @@ saveBtn.addEventListener("click", function (e) {
     if (userWord.length == 0) {
         // Adds invisible class to Bootstrap spinner (so doesn't display this).
         loadingSpinnerD.classList.add("invisible");
-        // Displays error message (i.e. sets the inner HTML of the p element).
-        // *! Could we make this a model instead?
-        errorMsg.innerHTML = "Please enter a word."
+        // TASK 15: Displays error modal.
+        errorModal.show();
+        // Displays error message in modal (i.e. sets the inner HTML of the p element).
+        errorMsg.innerHTML = missingWord;
         // Resets the userSavedWord to the new (empty) userWord (i.e. so that any previously entered word is removed).
         userSavedWord = userWord;
         // If the search input isn't empty, run this codeblock:
@@ -202,7 +219,7 @@ saveBtn.addEventListener("click", function (e) {
         // Sets userSavedWord variable to the words that the user's inputted.
         userSavedWord = userWord;
         // Displays confirmation message.
-        errorMsg.innerHTML = `"${userSavedWord}" has been saved, now it's time to generate a definition or a poem!`
+        confirmMsg.innerHTML = `"${userSavedWord}" has been saved, now it's time to generate a definition or a poem!`
         // TASK 13: Saves the user's word to the browser, setting the key name and the value to the word itself.
         localStorage.setItem(`${userSavedWord}`, JSON.stringify(userSavedWord));
         // Calls function to display word history button.
@@ -241,8 +258,10 @@ definitionBtn.addEventListener("click", function (e) {
     if (userSavedWord.length == 0) {
         // Adds invisible class to Bootstrap spinner (so doesn't display this).
         loadingSpinnerD.classList.add("invisible");
-        // Displays an error message (i.e. sets the text of the p element).
-        definitionText.textContent = "Please save a word above."
+        // TASK 15: Displays error modal.
+        errorModal.show();
+        // Displays error message in modal (i.e. sets the inner HTML of the p element).
+        errorMsg.innerHTML = missingWord;
         // If user's inputted a word, run this codeblock.
     } else {
         // Calls function to get a definition from the Dictionary API.
@@ -263,7 +282,7 @@ wordHistSection.addEventListener("click", function (e) {
         // TESTING
         console.log(userSavedWord);
         // Displays confirmation message.
-        errorMsg.innerHTML = `"${userSavedWord}" has been retrieved, now it's time to generate a definition or a poem!`
+        confirmMsg.innerHTML = `"${userSavedWord}" has been retrieved, now it's time to generate a definition or a poem!`
         // Clears any word, definition and/or poem (i.e. from previous word).
         inputText.value = "";
         definitionText.textContent = "";
