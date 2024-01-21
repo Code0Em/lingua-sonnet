@@ -1,7 +1,20 @@
+:root {
+  --yellow: #FBC202; ;
+  --white: #ffffff;
+  --aqua: #02f3fb;
+  --blue: #35abcf;
+  --bg-bottom: #8ecae6;
+
+  --cursive:'Rochester', cursive;;
+  --serif: 'Solway', serif;
+  --serif-body: 'Noto Serif', serif;
+
+}
+
 body  {
     margin: 0;
-    padding: 0;
-  
+    padding: 0;  
+    background-color: #B0C4DE;
   }
   
 
@@ -9,103 +22,159 @@ body  {
     list-style: none;
   }
 
-
   h1 {
     text-align: left;
     font-family: 'Solway', serif;
     font-size: 96px;
     
   }
-    
 
   
+/* ==============================Navbar Styles================== */
 
-  .heroBackground {
-  background-color: #0967aa;
-  /* background-color: #444CF7; */
-  color: white;
-  }
-  
-  /* Navbar Styles */
 
-  #logo {
-    /* margin-left: 5px; */
-    font-family: 'Rochester', cursive;
-    font-size: 35px;
-    margin-top: 30px;
-    color: #FBC202;
-
-  }
-
-.icon {
-  height: 90%;
+.navbar {
+  background-color: #333;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
 }
 
-
-
-.navbar-brand { 
-
-  margin-left: 25px;
-
-}
 
 .navbar ul {
   list-style-type: none;
-}
-.navbar ul li {
-  display: inline-block;
-  margin-left: 5px;
-  text-decoration: none;
-  color: #02f3fb;
-  /* border-bottom: 2px solid var( --bg-color-light);  */
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar a visited {
+.navbar li {
+  margin: 0;
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+}
+
+
+.logo-icon {
+  margin-left: 50px; /* Adjust as needed */
+}
+
+#logo-text {
+  font-family: var(--cursive);
+  font-size: 27px;
+  color: var(--white);
+}
+
+.history-link {
+padding-right: 20px;
+}
+
+.navbar ul {
+list-style-type: none;
+margin:0;
+padding: 10px 20px; 
+display:inline-block;
+}
+
+.right li{
+  font-family: var(--serif);
+  color: var(--white);
+}
+
+.navbar ul li {
+display: inline-block;
+margin-left: 5px;
+text-decoration: none;
+}
+
+.navbar ul li  a {
+  color: var(--aqua);
+  text-align: center;
   text-decoration: none;
 }
+
+.navbar ul li  a:hover {
+  color: var(--yellow);
+} 
+
+.navbar ul li a visited {
+  text-decoration: none;
+  color: var(--white);
+  }
 
 @media (max-width: 600px) { 
   nav ul li {
   display: inline;
-  /* font-size: 16px;
+  font-size: 16px;
   border-bottom: 1px solid var( --bg-color-light); 
-  padding-top: 14px; */
+  padding-top: 14px;
   }
+  }
+
+/* ==============================Hero Styles================== */
+
+h1 {
+  text-align: left;
+  font-family: 'Solway', serif;
+  font-size: 89px;
+  color: var(--yellow);
 }
 
+.heroBackground {
+background-image: url("../img/book-splash.png");
+background-position: cover;
+background-repeat: no-repeat;
+background-color: #212D49;
+color: var(--yellow);;
+
+}
+
+.subtitle  {
+font-family: var(--serif-body);
+color: var(--white);
+font-weight: 100;
+line-height: 1.6;
+}
+
+inputText {
+font-family: var(--cursive);
+}
+
+label {
+font-family: var(--serif);
+color: var(--yellow);
+}
+
+#save-btn {
+background-color: #EF4136;
+}
+
+#save-btn:hover {
+background-color: var(--yellow);
+color: navy;
+}
+
+button {
+font-family: var(--serif);
+}
+
+#errorMsg p {
+font-family: var(--cursive);
+background-color: var(--white); 
+}
+
+poemText {
+font-family: var(--serif);
+}  
+
+/* ==============================End of Hero Styles================== */
 
 
-  
-  .navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  .navbar a:hover {
-    color: #02f3fb;
-  } 
-  
-  
-
-
-  
-  .heroBackground {
-    background-image: url("../img/book-splash.png");
-    /* background-position: bottom; */
-    background-position: cover;
-    /* height: 100vh; */
-    background-repeat: no-repeat;
-    background-color: #212D49;
-    color: white;
-  }
-
-
-/* .errorMsg p {
-  padding-top: 10px;
-} */
 
 /* ES: Added styling to the input field, so this is bigger */
 .input-box {
@@ -137,7 +206,7 @@ body  {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   }
   
-  
+
   #inputText {
     width: 50%;
     padding: 8px;
@@ -146,65 +215,126 @@ body  {
   }
   
   button {
-    background-color: #4CAF50;
-    color: white;
+    font-family: var(--serif);
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
   }
   
+  #generate-definition {
+    background-color: #4CAF50;
+  }
+    
+  #generate-definition:hover  {
+    background-color: #45a049;;
+  
+  }
+  
+  
+  /* button {
+    background-color: #4CAF50;
+      color: white;
+  
+  
+    } */
   button:hover {
-    background-color: #45a049;
-  }
+    background-color: 
+    }
   
-  /* Result Container Styles */
-  .result-container {
-    margin-bottom: 20px;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  }
-  
-  .poetry-container {
-    margin-bottom: 20px;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  }
-  #definition-result, #poem-result {
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  /* Poetry Container Styles */
-  .poetry-container button {
+  #generate-poem {
     background-color: #2196F3;
     color: white;
   }
-  
-  .poetry-container button:hover {
-    background-color: #0b7dda;
+    
+  #generate-poem:hover  {
+      background-color: #0b7dda;
   }
   
-  .word-container {
-    margin-bottom: 20px;
-    max-width: 120px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
+  #save-btn {
+    background-color: #EF4136;
+      margin-bottom: 10px;
+      margin-top: 20px;
+  }
+    
+  #save-btn:hover {
+    background-color: var(--yellow);
+    color: navy;
   }
   
-  .history-container {
-    background-color: #4CAF50;
-    color: white;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  .hist-btn  {
+    background-color: var(--blue);
+    margin: 5px;
+    color: var(--white);
+
   }
+    
+  .hist-btn:hover {
+    background-color: var(--aqua);
+    color: navy;
+  }
+  
+    
+    /* Result Container Styles */
+  .result-container {
+      margin-bottom: 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    }
+    
+  .poetry-container {
+      margin-bottom: 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    }
+  #DefinationResult, #poetryResult {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    
+    /* Poetry Container Styles */
+    
+    
+  .card {
+    margin-bottom: 25px;
+  }  
+  
+    .poetry-container button {
+      background-color: #2196F3;
+      color: white;
+    }
+    
+    .poetry-container button:hover {
+      background-color: #0b7dda;
+    }
+    
+    .word-container {
+      margin-bottom: 20px;
+      max-width: 120px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+    }
+  
+    .history-container {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+  .bottom-half {
+    background-color: var(--white);
+  }
+  
+  
   
