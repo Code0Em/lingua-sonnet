@@ -40,12 +40,11 @@
   </nav>  -->
 
 
-  <!--------NAVBAR------------------------------------>
+  <!--------NAVBAR: FURTHER REFINED TO ALIGN LOGO + TEXT--------------->
   <div class="navbar">
+    <span id="logo-icon"><img id="logo-icon" src="./assets/img/icon-yellow032.svg"></span>
     <ul class="left">
-      <li id="logo-icon"><img src="./assets/img/icon-yellow032.svg"></li>
       <li id="logo-text">LinguaSonnet</li>
-
     </ul>
     <ul class="right">
       <li class="history-link">
@@ -56,7 +55,6 @@
       </li>
     </ul>
   </div>
-
 
 
   <!--------- HERO CODE THAT WORKS --------->
@@ -104,7 +102,7 @@
             <!-- ES: Changed this from link element to a button element-->
             <button id="generate-definition">Generate Definition</button>
             <section class="result-container">
-              <h3>Definition:</h3>
+              <h3 result-title>Definition:</h3>
               <div id="definition-result">
                 <!-- BOOTSTRAP SPINNER (for loading) -->
                 <div class="spinner-border invisible" role="status">
@@ -124,7 +122,7 @@
             <!-- ES: Changed this from link element to a button element-->
             <button id="generate-poem">Generate Poetry</button>
             <section class="poetry-container">
-              <h3>Poetry:</h3>
+              <h3 id="result-title">Poetry:</h3>
               <div id="poem-result">
                 <!-- BOOTSTRAP SPINNER (for loading) -->
                 <div class="spinner-border invisible" role="status">
@@ -147,14 +145,14 @@
       <div class="col-sm-12 mb-3 mb-sm-0">
         <div class="card">
           <div class="card-body word-history bg-light text-left ">
-            <h2 class="section-heading">
+            <h3 class="section-heading" id="result-title" >
               <svg width="30" height="30" viewBox="0 0 24 24" focusable="false">
                 <path
                   d="M4 4v2.01C5.83 3.58 8.73 2 12.01 2 17.53 2 22 6.48 22 12s-4.47 10-9.99 10C6.48 22 2 17.52 2 12h2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8C9.04 4 6.47 5.61 5.09 8H8v2H2V4h2z">
                 </path>
                 <path d="M13 12V6h-2v7l4.97 3.49 1.26-1.55z"></path>
               </svg><a id="history">Previously Searched Words</a>
-            </h2>
+            </h3>
             <section class="text-center" id="word-history"></section>
 
 
