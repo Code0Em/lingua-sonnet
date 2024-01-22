@@ -35,6 +35,7 @@ const testWord = "love";
 
 // Gets references for all of the HTML elements that we need.
 const poemText = document.getElementById("poem-lines");
+const poemInfoText = document.getElementById("poem-info");
 const poemBtn = document.getElementById("generate-poem");
 const saveBtn = document.getElementById("save-btn");
 const inputText = document.getElementById("input-text");
@@ -63,6 +64,9 @@ let userSavedWord = "";
 // Empty array to "collect" text of word history buttons.
 let btnsText = [];
 
+// Empty array to "collect" poem's author and title.
+let poemInfo = [];
+
 // **FUNCTIONS**
 // TASK 2: Query URL for PoetryDB, set to return a random poem.
 function getPoem() {
@@ -79,11 +83,18 @@ function getPoem() {
         .then(function (data) {
             // Gets the lines from the poem (as an array) and ‘converts’ the array into JSON string, also removes the speechmarks.
             const lines = JSON.stringify(data[0].lines).replace(/\"/g, "");
+            // Gets the poem's author (and repeats the above).
+            const author = JSON.stringify(data[0].author).replace(/\"/g, "");
+            // Gets the poem's author (and repeats the above).
+            const title = JSON.stringify(data[0].title).replace(/\"/g, "");
+            // Pushes the title and author up to the array (so we can retrieve this outside of the function).
+            poemInfo.push(title, author);
             // Calls function to check the poem for user's word.
             checkPoem(lines);
             // FOR TESTING PURPOSES 
             console.log(lines);
-            //console.log(test.replace(/\"/g, ""));
+            console.log(data);
+            console.log(poemInfo);
         });
 };
 
@@ -91,6 +102,8 @@ function getPoem() {
 function checkPoem(lines) {
     // Clears any previous poem or error message from p element.
     poemText.textContent = "";
+    // Clears any previous poem's title and author from p element.
+    poemInfoText.textContent = "";
     // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
     if (userSavedWord.length == 0) {
         // TASK 15: Displays error modal.
@@ -101,6 +114,8 @@ function checkPoem(lines) {
     } else {
         // If the random poem contains the user's word, run this codeblock.
         if (lines.includes(userSavedWord)) {
+            // Sets text of p element to the poem's title and author
+            poemInfoText.textContent = `${poemInfo[0]} by ${poemInfo[1]}`
             // Sets text of p element to the poem.
             poemText.textContent = lines;
             // Adds invisible class to Bootstrap spinner (so doesn't display this).
@@ -109,6 +124,8 @@ function checkPoem(lines) {
             console.log("found poem");
             // If less than ten random poems have been generated (i.e. fetch function called less than ten times), run this codeblock.
         } else if (count < 9) {
+            // Resets the poemInfo (i.e. poem title and author) to an empty array (i.e. so that previous generated poem's title and author are removed).
+            poemInfo = [];
             // Calls function to get a random poem from the Poetry API.
             getPoem()
             // Adds one to fetch function count.
@@ -236,6 +253,8 @@ saveBtn.addEventListener("click", function (e) {
 poemBtn.addEventListener("click", function (e) {
     // Prevents the default behaviour (i.e. reloading the page).
     e.preventDefault();
+    // Resets the poemInfo (i.e. poem title and author) to an empty array (i.e. so that any previously poem title and author are removed).
+    poemInfo = [];
     // Calls function to get a random poem from the Poetry API.
     getPoem();
     // Resets count to zero (so that fetch function will be called ten times with new word).
@@ -289,5 +308,6 @@ wordHistSection.addEventListener("click", function (e) {
         inputText.value = "";
         definitionText.textContent = "";
         poemText.textContent = "";
+        poemInfoText.textContent = "";
     }
 });
