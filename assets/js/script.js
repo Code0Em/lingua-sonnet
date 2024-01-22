@@ -77,12 +77,13 @@ function getPoem() {
         })
         // Waits for the data to be formatted (and then runs codeblock)..
         .then(function (data) {
-            // Gets the lines from the poem (as an array), and  ‘converts’ the array into JSON string.
-            const lines = JSON.stringify(data[0].lines);
+            // Gets the lines from the poem (as an array) and ‘converts’ the array into JSON string, also removes the speechmarks.
+            const lines = JSON.stringify(data[0].lines).replace(/\"/g, "");
             // Calls function to check the poem for user's word.
             checkPoem(lines);
             // FOR TESTING PURPOSES 
-            //console.log(lines);
+            console.log(lines);
+            //console.log(test.replace(/\"/g, ""));
         });
 };
 
@@ -118,6 +119,7 @@ function checkPoem(lines) {
             console.log(count);
             // If random poem doesn't contain user's word and ten random poems have already been generated, run this codeblock.
         } else {
+            // *CREDIT: Worked below code out thanks to Mojtaba Seyedi (2022) Call modal manually with vanilla JavaScript in Bootstrap 5 (https://www.youtube.com/watch?v=XUhdzIO6lgg).
             // TASK 15: Displays error modal.
             errorModal.show();
             // Displays error message in modal (i.e. sets the inner HTML of the p element).
@@ -154,8 +156,8 @@ function getDefinition() {
         })
         // Waits for the data to be formatted (and then runs codeblock)..
         .then(function (data) {
-            // Gets the definition (as an array), and  ‘converts’ the array into JSON string.
-            const definition = JSON.stringify(data[0].meanings[0].definitions[0].definition);
+            // Gets the definition (as an array) and  ‘converts’ the array into JSON string, also removes speechmarks.
+            const definition = JSON.stringify(data[0].meanings[0].definitions[0].definition).replace(/\"/g, "");
             // Calls function to display definition of the user's word.
             displayDefinition(definition);
             // FOR TESTING PURPOSES 
