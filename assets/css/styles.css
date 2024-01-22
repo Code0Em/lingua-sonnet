@@ -4,7 +4,10 @@
   --white: #ffffff;
   --aqua: #02f3fb;
   --blue: #35abcf;
-  --bg-bottom: #8ecae6;
+  --bg-modaltop: #8ecae6;
+  --bg-top: #212D49; 
+  --bg-red-btn: #EF4136;
+  
 
   --cursive: 'Rochester', cursive;
   ;
@@ -17,6 +20,27 @@ body {
   margin: 0;
   padding: 0;
   background-color: #B0C4DE;
+}
+
+.modal-header {
+  background-color: var(--bg-modaltop);
+  border-bottom: none;
+  font-weight: 500;
+}
+
+.modal-body {
+  border-bottom: none;
+  padding-top: 35px;
+  padding-left: 35px;
+}
+
+.modal-content {
+  font-family: var(--serif);
+}
+
+#modal-btn {
+  background-color: var(--yellow);
+  /* font-family: var(--serif); */
 }
 
 h1 {
@@ -47,12 +71,10 @@ h1 {
   display: flex;
 }
 
-
 .navbar li {
   margin: 0;
   text-decoration: none;
 }
-
 
 #logo-text {
   font-size: 27px;
@@ -63,7 +85,6 @@ h1 {
 }
 
 .history-link {
-  
   padding-left: 12px;
 }
 
@@ -156,10 +177,9 @@ label {
 button {
   font-family: var(--serif);
 }
+#confirm-msg {
+  font-family: var(--serif);
 
-#errorMsg p {
-  font-family: var(--cursive);
-  background-color: var(--white);
 }
 
 poemText {
@@ -188,11 +208,7 @@ label {
 }
 
 /* ==============================End of Hero Styles================== */
-
-
 /* Definition Container Styles */
-
-
 .card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -206,7 +222,6 @@ label {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
-
 
 #inputText {
   width: 50%;
@@ -230,8 +245,6 @@ button {
 
 #generate-definition:hover {
   background-color: #45a049;
-  ;
-
 }
 
 button:hover {
@@ -270,7 +283,6 @@ button:hover {
   color: navy;
 }
 
-
 /* Result Container Styles */
 .result-container {
   margin-bottom: 20px;
@@ -297,11 +309,7 @@ button:hover {
 }
 
 
-
-
 /* Poetry Container Styles */
-
-
 .card {
   margin-bottom: 25px;
 }
@@ -335,3 +343,4 @@ button:hover {
 .bottom-half {
   background-color: var(--white);
 }
+
