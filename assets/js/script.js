@@ -118,6 +118,7 @@ function checkPoem(lines) {
             console.log(count);
             // If random poem doesn't contain user's word and ten random poems have already been generated, run this codeblock.
         } else {
+            // *CREDIT: Worked below code out thanks to Mojtaba Seyedi (2022) Call modal manually with vanilla JavaScript in Bootstrap 5 (https://www.youtube.com/watch?v=XUhdzIO6lgg).
             // TASK 15: Displays error modal.
             errorModal.show();
             // Displays error message in modal (i.e. sets the inner HTML of the p element).
