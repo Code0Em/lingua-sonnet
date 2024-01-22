@@ -19,79 +19,70 @@ body {
   background-color: #B0C4DE;
 }
 
-
-.ul {
-  list-style: none;
-}
-
 h1 {
   text-align: left;
   font-family: 'Solway', serif;
   font-size: 96px;
-
 }
-
 
 /* ==============================Navbar Styles================== */
 
-
 .navbar {
   background-color: #333;
-  padding: 15px;
   position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
+  display:flex;
+  justify-content: left;
   z-index: 100;
+  top: 0;
 }
 
+#logo-icon {
+  padding-left: 15px; 
+}
 
 .navbar ul {
   list-style-type: none;
-  display: flex;
-  align-items: baseline;
   margin: 0;
   padding: 0;
+  display: flex;
 }
+
 
 .navbar li {
   margin: 0;
   text-decoration: none;
-  display: flex;
-  align-items: baseline;
 }
 
-
-.logo-icon {
-  margin-left: 50px;
-  /* Adjust as needed */
-}
 
 #logo-text {
-  font-family: var(--cursive);
   font-size: 27px;
+  font-family: var(--cursive);
   color: var(--white);
+  padding-right: 20px;
+  /* margin-top: 10px ; */
 }
 
 .history-link {
-  padding-right: 20px;
+  
+  padding-left: 12px;
 }
 
 .navbar ul {
   list-style-type: none;
   margin: 0;
-  padding: 10px 20px;
-  display: inline-block;
+  padding-left: 10px; 
+  display: flex;
 }
 
 .right li {
   font-family: var(--serif);
   color: var(--white);
+  padding-top: 5px;
 }
 
 .navbar ul li {
   display: inline-block;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   text-decoration: none;
 }
 
@@ -135,7 +126,6 @@ h1 {
   background-color: #212D49;
   color: var(--yellow);
   ;
-
 }
 
 .subtitle {
@@ -176,19 +166,29 @@ poemText {
   font-family: var(--serif);
 }
 
-/* ==============================End of Hero Styles================== */
-
-
-
 /* ES: Added styling to the input field, so this is bigger */
 .input-box {
   width: 300px;
   height: 50px;
 }
 
+/* added to input as the text was at 0 margin */
+input {
+  padding: 5px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+}
+
+label {
+  margin-bottom: 10px;
+}
+
 .save-btn {
   padding-bottom: 10px;
 }
+
+/* ==============================End of Hero Styles================== */
+
 
 /* Definition Container Styles */
 
@@ -196,9 +196,6 @@ poemText {
 .card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-
-
 
 .definition-container {
   padding-top: 20px
@@ -237,13 +234,6 @@ button {
 
 }
 
-
-/* button {
-    background-color: #4CAF50;
-      color: white;
-  
-  
-    } */
 button:hover {
   background-color:
 }
@@ -305,6 +295,9 @@ button:hover {
   padding: 10px;
   border: 1px solid #ddd;
 }
+
+
+
 
 /* Poetry Container Styles */
 
