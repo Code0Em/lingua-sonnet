@@ -344,3 +344,6 @@ button:hover {
   background-color: var(--white);
 }
 
+#poem-info {
+  font-family: var(--cursive); font-size: x-large;
+  }
