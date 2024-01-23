@@ -9,13 +9,25 @@
 
 // TASK 5: Create a function (with an event listener) which "gets" the user's word, when they enter a word and selects the save button. Within this, use an if/else statement to validate the user’s input and display an error message if the input’s blank.
 
-// TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word). UPDATE: Incorporated this into existing function to keep code DRY.
+// TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word). UPDATE: Incorporated this into existing function (at TASK 3) to keep code DRY.
 
 // TASK 7: Construct API url for Dictionary. (Endpoint will be user's word to return definition).
 
 // TASK 8: Create a function which “fetches” the word's definition from the API.
 
-// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called.
+// TASK 9: Create an event listener, so that when the user selects the generate definition button, the above "fetch" function is called. Add if/else statement to to validate the user’s input and display an error message if the input’s blank (and stop the call on the "fetch" function).
+
+// TASK 10: Create a function which displays a definition of the user's word (and call it within the above event listener).
+
+// TASK 11: Add if/else statement to fetch function on Dictionary API, so that an error message is displayed to user if the API returns an error.
+
+// TASK 12: Create a function which creates a new word history button, if there is not one already created for the word.
+
+// TASK 13: Create function which saves the user's word to local storage. UPDATE: Incorporated this into existing event listener (at TASK 5) to keep code DRY.
+
+// TASK 14: Create an event listener which retrieves the user's word name from the browser and displays a confirmation message, when the user selects the word history button.
+
+// TASK 15: Create a bootstrap modal and add code to existing function(s) so it's triggered programmatically when required (e.g. when user doesn't enter a word).
 
 // **GLOBAL VARIABLES**
 // FOR TESTING PURPOSES
@@ -23,17 +35,37 @@ const testWord = "love";
 
 // Gets references for all of the HTML elements that we need.
 const poemText = document.getElementById("poem-lines");
+const poemInfoText = document.getElementById("poem-info");
 const poemBtn = document.getElementById("generate-poem");
 const saveBtn = document.getElementById("save-btn");
-const errorMsg = document.getElementById("error-msg");
-// !Need to add this ID to html
+const inputText = document.getElementById("input-text");
+const confirmMsg = document.getElementById("confirm-msg");
 const definitionBtn = document.getElementById("generate-definition");
+const definitionText = document.getElementById("definition");
+const poemResults = document.getElementById("poem-result");
+const loadingSpinnerP = poemResults.children[0];
+const definitionResults = document.getElementById("definition-result");
+const loadingSpinnerD = definitionResults.children[0];
+const wordHistSection = document.getElementById("word-history");
+const errorModal = new bootstrap.Modal("#error-modal");
+const errorMsg = document.getElementById("error-msg");
+
+// The text for error messages.
+const missingWord = "You haven't entered a word. Please enter a word."
+const noPoem = "Sorry, we can’t find a poem right now. Please try again later."
+const unknownWord = "Sorry, we don't know that word."
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
 let count = 0;
 
 // An "empty" variable to "collect" the user's word.
 let userSavedWord = "";
+
+// Empty array to "collect" text of word history buttons.
+let btnsText = [];
+
+// Empty array to "collect" poem's author and title.
+let poemInfo = [];
 
 // **FUNCTIONS**
 // TASK 2: Query URL for PoetryDB, set to return a random poem.
@@ -49,43 +81,68 @@ function getPoem() {
         })
         // Waits for the data to be formatted (and then runs codeblock)..
         .then(function (data) {
-            // Gets the lines from the poem (as an array), and  ‘converts’ the array into JSON string.
-            const lines = JSON.stringify(data[0].lines);
+            // Gets the lines from the poem (as an array) and ‘converts’ the array into JSON string, also removes the speechmarks.
+            const lines = JSON.stringify(data[0].lines).replace(/\"/g, "");
+            // Gets the poem's author (and repeats the above).
+            const author = JSON.stringify(data[0].author).replace(/\"/g, "");
+            // Gets the poem's author (and repeats the above).
+            const title = JSON.stringify(data[0].title).replace(/\"/g, "");
+            // Pushes the title and author up to the array (so we can retrieve this outside of the function).
+            poemInfo.push(title, author);
             // Calls function to check the poem for user's word.
             checkPoem(lines);
             // FOR TESTING PURPOSES 
-            //console.log(lines);
+            console.log(lines);
+            console.log(data);
+            console.log(poemInfo);
         });
-    };
+};
 
 // TASK 4: Checks if random poem contains user’s word and (if yes) displays on page or (if not) generates another random poem (up to max of ten in total).
 function checkPoem(lines) {
     // Clears any previous poem or error message from p element.
     poemText.textContent = "";
+    // Clears any previous poem's title and author from p element.
+    poemInfoText.textContent = "";
     // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
     if (userSavedWord.length == 0) {
-        // Displays an error message (i.e. sets the text of the p element).
-        poemText.textContent = "Please save a word above."
+        // TASK 15: Displays error modal.
+        errorModal.show();
+        // Displays error message in modal (i.e. sets the inner HTML of the p element).
+        errorMsg.innerHTML = missingWord;
         // If user's inputted a word, run this codeblock.
     } else {
         // If the random poem contains the user's word, run this codeblock.
         if (lines.includes(userSavedWord)) {
+            // Sets text of p element to the poem's title and author
+            poemInfoText.textContent = `${poemInfo[0]} by ${poemInfo[1]}`
             // Sets text of p element to the poem.
             poemText.textContent = lines;
+            // Adds invisible class to Bootstrap spinner (so doesn't display this).
+            loadingSpinnerP.classList.add("invisible");
             // FOR TESTING PURPOSES 
             console.log("found poem");
             // If less than ten random poems have been generated (i.e. fetch function called less than ten times), run this codeblock.
         } else if (count < 9) {
+            // Resets the poemInfo (i.e. poem title and author) to an empty array (i.e. so that previous generated poem's title and author are removed).
+            poemInfo = [];
             // Calls function to get a random poem from the Poetry API.
             getPoem()
             // Adds one to fetch function count.
             count++
+            // Removes invisible class from Bootstrap spinner (so displays this).
+            loadingSpinnerP.classList.remove("invisible");
             // FOR TESTING PURPOSES.
             console.log(count);
             // If random poem doesn't contain user's word and ten random poems have already been generated, run this codeblock.
         } else {
-            // Sets text of p element to an error message.
-            poemText.textContent = `Sorry, we can’t find a poem right now. Please try again later.`
+            // *CREDIT: Worked below code out thanks to Mojtaba Seyedi (2022) Call modal manually with vanilla JavaScript in Bootstrap 5 (https://www.youtube.com/watch?v=XUhdzIO6lgg).
+            // TASK 15: Displays error modal.
+            errorModal.show();
+            // Displays error message in modal (i.e. sets the inner HTML of the p element).
+            errorMsg.innerHTML = noPoem;
+            // Adds invisible class to Bootstrap spinner (so doesn't display this anymore).
+            loadingSpinnerP.classList.add("invisible");
         }
     }
 }
@@ -93,22 +150,71 @@ function checkPoem(lines) {
 // TASK 8: Query URL for Dictionary, set to return definition of user's word.
 function getDefinition() {
     // TASK 7: Gets a definition from Dictionary API.
-    const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`;
+    const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`
     // Runs the fetch method on the API query URL.
     fetch(definitionQueryUrl)
         // Waits for the data to be returned (and then runs codeblock).
         .then(function (response) {
+            // If the API responds with an error (e.g. can't find a definition for the user's word), run this codeblock.
+            // *CREDIT: Worked below code out thanks to Stack Overflow (2016) Fetch resolves even if 404? (https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404).
+            if (!response.ok) {
+                // Adds invisible class to Bootstrap spinner (so doesn't display this).
+                loadingSpinnerD.classList.add("invisible");
+                // TASK 15: Displays error modal.
+                errorModal.show();
+                // Displays error message in modal (i.e. sets the inner HTML of the p element).
+                errorMsg.innerHTML = unknownWord;
+                // FOR TESTING PURPOSES 
+                console.log("dictionary API error");
+                console.log(unknownWord);
+            }
             // Formats the returned data into a usable form, using json method.
             return response.json();
         })
         // Waits for the data to be formatted (and then runs codeblock)..
         .then(function (data) {
-            // Gets the definition (as an array), and  ‘converts’ the array into JSON string.
-            const definition = JSON.stringify(data[0].meanings[0].definitions[0].definition);
+            // Gets the definition (as an array) and  ‘converts’ the array into JSON string, also removes speechmarks.
+            const definition = JSON.stringify(data[0].meanings[0].definitions[0].definition).replace(/\"/g, "");
+            // Calls function to display definition of the user's word.
+            displayDefinition(definition);
             // FOR TESTING PURPOSES 
             console.log(definition);
         });
 };
+
+// TASK 10: Displays a definition of the user's word.
+function displayDefinition(definition) {
+    // Adds invisible class to Bootstrap spinner (so doesn't display this).
+    loadingSpinnerD.classList.add("invisible");
+    // Sets text of p element to the definition.
+    definitionText.textContent = definition;
+    // FOR TESTING PURPOSES 
+    console.log("found definition");
+}
+
+// TASK 12: Creates word history buttons.
+function createBtn() {
+    // Checks if array (i.e. the text of the word history buttons) includes user's words (i.e. if this word already has a button, run this codeblock).
+    if (btnsText.includes(userSavedWord)) {
+        // TESTING
+        console.log("already got this button");
+        // Gets us out of the function (i.e. returns nothing).
+        return
+    } else {
+        // Creates a new button.
+        const newBtn = document.createElement("button");
+        // Sets the text of the button to the user's word.
+        newBtn.textContent = userSavedWord;
+        // Adds classes to button (for Bootstrap styling and for event listener).
+        newBtn.classList.add("btn", "hist-btn", "word-history");
+        // Appends button to section element.
+        wordHistSection.append(newBtn);
+        // Pushes the button's text up to array (so we can check it/when it's searched again).
+        btnsText.push(newBtn.textContent);
+        // TESTING
+        console.log(btnsText);
+    }
+}
 
 // **EVENT LISTENERS**
 // TASK 5: Listens for a click event on the save button and calls function.
@@ -119,15 +225,25 @@ saveBtn.addEventListener("click", function (e) {
     const userWord = inputText.value;
     // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
     if (userWord.length == 0) {
-        // Displays error message (i.e. sets the inner HTML of the p element).
-        // *! Could we make this a model instead?
-        errorMsg.innerHTML = "Please enter a word."
+        // Adds invisible class to Bootstrap spinner (so doesn't display this).
+        loadingSpinnerD.classList.add("invisible");
+        // TASK 15: Displays error modal.
+        errorModal.show();
+        // Displays error message in modal (i.e. sets the inner HTML of the p element).
+        errorMsg.innerHTML = missingWord;
+        // Resets the userSavedWord to the new (empty) userWord (i.e. so that any previously entered word is removed).
+        userSavedWord = userWord;
         // If the search input isn't empty, run this codeblock:
     } else {
-        // Displays confirmation message.
-        errorMsg.innerHTML = `"${userWord}" has been saved, now it's time to generate a definition or a poem!`
-        // FOR TESTING PURPOSES 
+        // Sets userSavedWord variable to the words that the user's inputted.
         userSavedWord = userWord;
+        // Displays confirmation message.
+        confirmMsg.innerHTML = `"${userSavedWord}" has been saved, now it's time to generate a definition or a poem!`
+        // TASK 13: Saves the user's word to the browser, setting the key name and the value to the word itself.
+        localStorage.setItem(`${userSavedWord}`, JSON.stringify(userSavedWord));
+        // Calls function to display word history button.
+        createBtn();
+        // FOR TESTING PURPOSES 
         console.log(userWord);
         console.log(userSavedWord);
     }
@@ -137,6 +253,8 @@ saveBtn.addEventListener("click", function (e) {
 poemBtn.addEventListener("click", function (e) {
     // Prevents the default behaviour (i.e. reloading the page).
     e.preventDefault();
+    // Resets the poemInfo (i.e. poem title and author) to an empty array (i.e. so that any previously poem title and author are removed).
+    poemInfo = [];
     // Calls function to get a random poem from the Poetry API.
     getPoem();
     // Resets count to zero (so that fetch function will be called ten times with new word).
@@ -144,32 +262,7 @@ poemBtn.addEventListener("click", function (e) {
     // FOR TESTING PURPOSES.
     console.log("poem button pressed");
     // FOR TESTING PURPOSES.
-    console.log("count is "+count);
+    console.log("count is " + count);
 });
 
 
-// Add a reference to the loading icon element
-const loadingIcon = document.getElementById("loading-icon");
-
-// ...
-
-// Modify the getPoem function to show and hide the loading icon
-function getPoem() {
-  // Show the loading icon
-  loadingIcon.style.display = "block";
-
-  const poemQueryUrl = "https://poetrydb.org/random";
-
-  fetch(poemQueryUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      const lines = JSON.stringify(data[0].lines);
-      checkPoem(lines);
-    })
-    .finally(function () {
-      // Hide the loading icon regardless of success or failure
-      loadingIcon.style.display = "none";
-    });
-}
