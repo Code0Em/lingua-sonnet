@@ -347,3 +347,7 @@ button:hover {
 #poem-info {
   font-family: var(--cursive); font-size: x-large;
   }
+
+  .card-body {
+    font-family: var(--serif);
+    }
