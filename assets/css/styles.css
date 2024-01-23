@@ -138,7 +138,7 @@ body  {
     border-radius: 5px;
     cursor: pointer;
   }
-  
+/*Spinning icon css locaiton  */
   .loading-icon {
     display: none;
     width: 50px;
