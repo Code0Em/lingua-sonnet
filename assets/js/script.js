@@ -9,7 +9,7 @@
 
 // TASK 5: Create a function (with an event listener) which "gets" the user's word, when they enter a word and selects the save button. Within this, use an if/else statement to validate the user’s input and display an error message if the input’s blank.
 
-// TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word).
+// TASK 6: Create function (with an event listener) which resets the fetch function count, when the user selects the generate poem button (so that new random poems can be generated/in case on the first round, no random button is found with the user's word). UPDATE: Incorporated this into existing function to keep code DRY.
 
 // TASK 7: Construct API url for Dictionary. (Endpoint will be user's word to return definition).
 
@@ -26,6 +26,8 @@ const poemText = document.getElementById("poem-lines");
 const poemBtn = document.getElementById("generate-poem");
 const saveBtn = document.getElementById("save-btn");
 const errorMsg = document.getElementById("error-msg");
+// !Need to add this ID to html
+const definitionBtn = document.getElementById("generate-definition");
 
 // Keeps count of how many times Poetry API has been called (i.e. how many random poems have been generated).
 let count = 0;
@@ -33,7 +35,7 @@ let count = 0;
 // An "empty" variable to "collect" the user's word.
 let userSavedWord = "";
 
-// **FUNCTIONS AND EVENT LISTENERS**
+// **FUNCTIONS**
 // TASK 2: Query URL for PoetryDB, set to return a random poem.
 function getPoem() {
     // TASK 1: Gets a random poem from the Poetry API.
@@ -88,8 +90,25 @@ function checkPoem(lines) {
     }
 }
 
-// TASK 7: Gets a definition from Dictionary API.
-const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`;
+// TASK 8: Query URL for Dictionary, set to return definition of user's word.
+function getDefinition() {
+    // TASK 7: Gets a definition from Dictionary API.
+    const definitionQueryUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${userSavedWord}`;
+    // Runs the fetch method on the API query URL.
+    fetch(definitionQueryUrl)
+        // Waits for the data to be returned (and then runs codeblock).
+        .then(function (response) {
+            // Formats the returned data into a usable form, using json method.
+            return response.json();
+        })
+        // Waits for the data to be formatted (and then runs codeblock)..
+        .then(function (data) {
+            // Gets the definition (as an array), and  ‘converts’ the array into JSON string.
+            const definition = JSON.stringify(data[0].meanings[0].definitions[0].definition);
+            // FOR TESTING PURPOSES 
+            console.log(definition);
+        });
+};
 
 // **EVENT LISTENERS**
 // TASK 5: Listens for a click event on the save button and calls function.
@@ -114,20 +133,43 @@ saveBtn.addEventListener("click", function (e) {
     }
 });
 
-// TASK 3: Listens for a click event on the poem button and calls function.
+// TASK 3 and 6: Listens for a click event on the poem button and calls function.
 poemBtn.addEventListener("click", function (e) {
     // Prevents the default behaviour (i.e. reloading the page).
     e.preventDefault();
     // Calls function to get a random poem from the Poetry API.
     getPoem();
-    // FOR TESTING PURPOSES.
-    console.log("poem button pressed");
-});
-
-// TASK 6: Listens for a click event on the poem button and calls function.
-poemBtn.addEventListener("click", function resetCount() {
     // Resets count to zero (so that fetch function will be called ten times with new word).
     count = 0;
+    // FOR TESTING PURPOSES.
+    console.log("poem button pressed");
+    // FOR TESTING PURPOSES.
+    console.log("count is "+count);
 });
 
 
+// Add a reference to the loading icon element
+const loadingIcon = document.getElementById("loading-icon");
+
+// ...
+
+// Modify the getPoem function to show and hide the loading icon
+function getPoem() {
+  // Show the loading icon
+  loadingIcon.style.display = "block";
+
+  const poemQueryUrl = "https://poetrydb.org/random";
+
+  fetch(poemQueryUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const lines = JSON.stringify(data[0].lines);
+      checkPoem(lines);
+    })
+    .finally(function () {
+      // Hide the loading icon regardless of success or failure
+      loadingIcon.style.display = "none";
+    });
+}
