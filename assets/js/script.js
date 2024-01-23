@@ -265,49 +265,4 @@ poemBtn.addEventListener("click", function (e) {
     console.log("count is " + count);
 });
 
-// TASK 9: Listens for a click event on the definition button and calls function.
-definitionBtn.addEventListener("click", function (e) {
-    // Prevents the default behaviour (i.e. reloading the page).
-    e.preventDefault();
-    // Clears any previous definition or error message from p element.
-    definitionText.textContent = "";
-    // Removes invisible class from Bootstrap spinner (so displays this).
-    loadingSpinnerD.classList.remove("invisible");
-    // FOR TESTING PURPOSES.
-    console.log("definition button pressed");
-    // Validates the word input by checking it's not empty (i.e. if the length of the value is zero, run this codeblock).
-    if (userSavedWord.length == 0) {
-        // Adds invisible class to Bootstrap spinner (so doesn't display this).
-        loadingSpinnerD.classList.add("invisible");
-        // TASK 15: Displays error modal.
-        errorModal.show();
-        // Displays error message in modal (i.e. sets the inner HTML of the p element).
-        errorMsg.innerHTML = missingWord;
-        // If user's inputted a word, run this codeblock.
-    } else {
-        // Calls function to get a definition from the Dictionary API.
-        getDefinition();
-    }
-});
 
-// TASK 14: Listens for a click event on a word history button (using event delegation) and calls function.
-wordHistSection.addEventListener("click", function (e) {
-    // Checks if the element that's been clicked on has class of word-history (i.e. if it's a word history button, run this codeblock).
-    if (e.target.matches(".word-history")) {
-        // Declares clickedWord variable and sets this equal to text of the button (so that this can be passed as key name).
-        const clickedWord = e.target.textContent;
-        // Gets the word from the browser.
-        const historyWord = JSON.parse(localStorage.getItem(`${clickedWord}`));
-        // Sets the historyWord (from the browser) as userSavedWord
-        userSavedWord = historyWord;
-        // TESTING
-        console.log(userSavedWord);
-        // Displays confirmation message.
-        confirmMsg.innerHTML = `"${userSavedWord}" has been retrieved, now it's time to generate a definition or a poem!`
-        // Clears any word, definition and/or poem (i.e. from previous word).
-        inputText.value = "";
-        definitionText.textContent = "";
-        poemText.textContent = "";
-        poemInfoText.textContent = "";
-    }
-});
