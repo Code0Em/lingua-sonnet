@@ -343,8 +343,12 @@ button {
 
 #poem-info {
   font-family: var(--cursive); font-size: x-large;
-  }
+}
 
-  .card-body {
-    font-family: var(--serif);
-    }
+.card-body {
+   font-family: var(--serif);
+ }
+
+ #definition {
+  line-height: 1.6;
+} 
