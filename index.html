@@ -20,66 +20,39 @@
 </head>
 
 <body>
-
-
-  <!-- BOOTSTRAP NAV BAR -->
-  <!-- <nav class="navbar sticky-top navbar-dark bg-dark">
-    <ul>
-      <li class="navbar-brand"><img src="./assets/img/icon-quill.svg"></li>
-      <li id="logo">LinguaSonnet</li>
-      <li class="history-link">
-        <!- ES: I updated the link to navigates user to word history section of page. -->
-  <!-- <a href="#word-history">Word History</a>
-      </li> -->
-  <!-- ES: I moved the contact link back into the nav-bar. I'm not sure if that's what we wanted though, so please feel free to delete it -->
-  <!-- <li class="history-link">
-        <a href="#">Contact</a>
-      </li>
-    </ul>
-  </nav>  -->
-
-
-  <!--------NAVBAR: FURTHER REFINED TO ALIGN LOGO + TEXT--------------->
   <div class="navbar">
     <span id="logo-icon"><img id="logo-icon" src="./assets/img/icon-yellow032.svg"></span>
-    <ul class="left">
-      <li id="logo-text">LinguaSonnet</li>
-    </ul>
-    <ul class="right">
-      <li class="history-link">
-        <a href="#">Home</a>
+      <ul class="left">
+        <li id="logo-text">LinguaSonnet</li>
+      </ul>
+      <ul class="right">
+        <li class="history-link">
+          <a href="#">Home</a>
         </li>
-      <li class="history-link">
-        <a href="#word-history">Word History</a>
-      </li>
-    </ul>
+        <li class="history-link">
+          <a href="#word-history">Word History</a>
+        </li>
+      </ul>
   </div>
-
-
-  <!--------- HERO CODE THAT WORKS --------->
 
   <div class="p-5 mb-4 heroBackground">
     <div class="container-fluid py-5 jumboCopy text-left">
       <h1 class="large">Type a word.</h1>
-      <div class="subtitle">Let's learn the meaning of English words and see them appear in poetry!</div>
-      <!--IE: changed p to div-->
-      <section class="definition-container">
-        <!-- <label for="input-text">Enter a word:</label><br> -->
-        <!-- ES: Changed this to an input element, so that user can't input paragraphs. Also added max length (45 is longest word in English Dictionary) and added styling (see CSS) -->
-        <input type="text" id="input-text" class="input-box" maxlength="45" placeholder="Type here..."></input><br>
-        <button id="save-btn">Save Word</button>
-        <p id="confirm-msg"></p>
-      </section>
+        <div class="subtitle">Let's learn the meaning of English words and see them appear in poetry!</div>
+          <section class="definition-container">
+            <input type="text" id="input-text" class="input-box" maxlength="45" placeholder="Type here..."></input><br>
+              <button id="save-btn">Save Word</button>
+            <p id="confirm-msg"></p>
+          </section>
     </div>
   </div>
 
-  <!--------- BOOTSTRAP MODAL (for error message) --------->
   <div id="error-modal" class="modal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">🙀 There's a problem!</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <p id="error-msg"></p>
@@ -92,55 +65,37 @@
   </div>
 
   <div class="container">
-
-      <!-- <div class="row"> -->
-    <!-- DEFINITION CARD -->
-    <!-- <div class="col-sm-6 mb-3 mb-sm-0"> -->
       <div class="card">
         <div class="card-body">
-          <!-- ES: Changed this from link element to a button element-->
           <button id="generate-definition">Generate Definition</button>
-          <section class="result-container">
-            <!-- <h3 result-title>Definition:</h3> -->
-            <div id="definition-result">
-              <!-- BOOTSTRAP SPINNER (for loading) -->
-              <div class="spinner-border invisible" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <section class="result-container">
+              <div id="definition-result">
+                <div class="spinner-border invisible" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                 <p id="definition"></p>
               </div>
-              <p id="definition"></p>
-            </div>
-          </section>
+            </section>
         </div>
       </div>
-    <!-- </div> -->
 
-    <!-- <div class="col-sm-6"> -->
-      <!-- POEM CARD -->
       <div class="card">
         <div class="card-body">
-          <!-- ES: Changed this from link element to a button element-->
           <button id="generate-poem">Generate Poetry</button>
-          <section class="poetry-container">
-            <!-- <h3 id="result-title">Poetry:</h3> -->
-            <div id="poem-result">
-              <!-- BOOTSTRAP SPINNER (for loading) -->
-              <div class="spinner-border invisible" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <section class="poetry-container">
+              <div id="poem-result">
+                <div class="spinner-border invisible" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p id="poem-info"></p>
+                <p id="poem-lines"></p>
               </div>
-              <p id="poem-info"></p>
-              <p id="poem-lines"></p>
-            </div>
-          </section>
+            </section>
         </div>
       </div>
     </div>
-   <!-- </div> -->
   </div>
 </div>
-
-
-  <!-- WORD HISTORY SECTION (for word history buttons) -->
-
 
   <div class="container">
     <div class="row">
@@ -156,19 +111,12 @@
               </svg><a id="history">Previously Searched Words</a>
             </h3>
             <section class="text-center" id="word-history"></section>
-
-
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
   </section>
-
-
 
   <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -183,11 +131,9 @@
 
     </footer>
   </div>
-  <!-- Link to Bootstrap JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-  <!-- Link to our JS file -->
   <script src="assets/js/script.js"></script>
 </body>
 
