@@ -83,9 +83,7 @@ As per the project criteria, some of the application’s styling relies upon `Bo
 
 The application is built with `vanilla javascript`, and the `javascript` file has been commented throughout with pseudocode (breaking the project into tasks, and comments have been added to explain the functionality of the code).
 
-The application also makes use of `local storage` to save users’ previously searched words; when the user inputs a word and selects the save button, the word is saved to local storage and a corresponding button is created. When the user then selects this button, the word is retrieved from the local storage and the user has the option to generate a definition and/or poem for this word again.
-
-The application also makes use of two APIs:
+The application also makes use of `local storage` to save users’ previously searched words and the following two APIs to retrieve word definitions and poems:
 
 * [`PoetryDB`](https://github.com/thundercomb/poetrydb#readme).
 * [`Free Dictionary API`](https://dictionaryapi.dev/).
@@ -141,13 +139,29 @@ N/A
 
 ## Usage
 
-**LINK TO DEPLOYED APPLICATION**
+Users navigate to the webpage via the URL ([LinguaSonnet](https://code0em.github.io/lingua-sonnet/)). When on the page, users are presented with a navigation bar, hero banner, three horizontal sections (for the “Definition”, "Poetry” and “Previously Saved Words”) and a footer. The navigation bar contains the application’s name and logo (which, if selected by the user, refreshes the page) and links to the top of the page (“Home”) and the third section (“Previously Searched Words”).
 
-Deployed Website: https://code0em.github.io/lingua-sonnet/
+The hero banner includes imagery, text to explain the application’s use, and an input field with a save button (for the user to enter and save a word).
 
-**SCREENSHOT OF DEPLOYED APPLICATION TO BE ADDED**
+Until the user saves a word and generates a definition and/or poem, the Definition, Poetry and Previously Saved Words sections remain unpopulated.
 
-![Webpage](assets/img/Webpage.png)
+If the user selects the save button without entering text in the input field or includes white spaces, an error modal is displayed. Equally, if the user selects the generate definition or poem buttons without saving a word, an error modal is displayed.
+
+Upon entering a word and selecting the save button, a confirmation message is displayed below the save button and a button (labelled with the user’s word) is displayed in the Previously Saved Words section. (This word is also saved to the browser). The user then has the option to generate a definition and/or poem via the respective buttons.
+
+If the user’s word is unknown to the Dictionary API (e.g. not from the English language), an error modal will be displayed. If a poem including the user’s word cannot be found from the Poetry API, an error modal is displayed.
+
+When a definition and/or poem has been found, these are displayed in their respective sections.
+
+When the user selects a “previously saved word” button, the word is retrieved from the browser, a confirmation message is displayed below the save button, and the user has the option to generate a definition and/or poem for this word again.
+
+On a resolution of 1400px, the application will load and display as follows:
+
+![Screenshot of LiguaSonnet application on initial load page](assets/img/Webpage.png)
+
+On the same resolution where the user has successfully saved a word and generated a definition, the application will display as follows:
+
+![Screenshot of LiguaSonnet application where user has saved word and generated definition](assets/img/linguasonnet-demo-definition.png)
 
 ## Credits
 

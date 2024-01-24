@@ -31,6 +31,8 @@
 
 // TASK 16: Create a function which gets the poem's title and author and displays this (along with the poem). UPDATE: Incorporated this into existing function (at TASK 2 and 4) to keep code DRY.
 
+// TASK 17: Create an event listener, so that when the user selects the logo (in the navbar) the page reloads.
+
 // **GLOBAL VARIABLES**
 // Gets references for all of the HTML elements that we need.
 const poemText = document.getElementById("poem-lines");
@@ -48,6 +50,7 @@ const loadingSpinnerD = definitionResults.children[0];
 const wordHistSection = document.getElementById("word-history");
 const errorModal = new bootstrap.Modal("#error-modal");
 const errorMsg = document.getElementById("error-msg");
+const logoIcon = document.getElementById('logo-icon');
 
 // The text for error messages.
 const missingWord = "You haven't entered a word. Please enter a word."
@@ -298,11 +301,8 @@ wordHistSection.addEventListener("click", function (e) {
     }
 });
 
-// TASK 15: When logo image is clicked the website refreshes
-var logoIcon = document.getElementById('logo-icon');
-
-// Add a click event listener to the logo-icon
+// TASK 17: Listens for click event on on the logo-icon.
 logoIcon.addEventListener('click', function() {
-  // Reload the page when the logo-icon is clicked
+  // Reloads the page when the logo-icon is clicked
   location.reload();
 });
