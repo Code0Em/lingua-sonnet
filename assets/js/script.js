@@ -297,3 +297,12 @@ wordHistSection.addEventListener("click", function (e) {
         poemInfoText.textContent = "";
     }
 });
+
+// TASK 15: When logo image is clicked the website refreshes
+var logoIcon = document.getElementById('logo-icon');
+
+// Add a click event listener to the logo-icon
+logoIcon.addEventListener('click', function() {
+  // Reload the page when the logo-icon is clicked
+  location.reload();
+});
