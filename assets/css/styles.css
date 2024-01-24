@@ -247,9 +247,6 @@ button {
   background-color: #45a049;
 }
 
-button:hover {
-  background-color:
-}
 
 #generate-poem {
   background-color: #2196F3;
@@ -346,8 +343,12 @@ button:hover {
 
 #poem-info {
   font-family: var(--cursive); font-size: x-large;
-  }
+}
 
-  .card-body {
-    font-family: var(--serif);
-    }
+.card-body {
+   font-family: var(--serif);
+ }
+
+ #definition {
+  line-height: 1.6;
+} 

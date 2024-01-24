@@ -141,11 +141,13 @@ N/A
 
 ## Usage
 
-**USAGE STILL TO BE WRITTEN**
+**LINK TO DEPLOYED APPLICATION**
 
-**LINK TO DEPLOYED APPLICATION STILL TO BE ADDED**
+Deployed Website: https://code0em.github.io/lingua-sonnet/
 
 **SCREENSHOT OF DEPLOYED APPLICATION TO BE ADDED**
+
+![Webpage](assets/img/Webpage.png)
 
 ## Credits
 

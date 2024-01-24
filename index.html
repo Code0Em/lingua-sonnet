@@ -28,7 +28,7 @@
       <li class="navbar-brand"><img src="./assets/img/icon-quill.svg"></li>
       <li id="logo">LinguaSonnet</li>
       <li class="history-link">
-        <!-- ES: I updated the link to navigates user to word history section of page. -->
+        <!- ES: I updated the link to navigates user to word history section of page. -->
   <!-- <a href="#word-history">Word History</a>
       </li> -->
   <!-- ES: I moved the contact link back into the nav-bar. I'm not sure if that's what we wanted though, so please feel free to delete it -->
@@ -93,49 +93,51 @@
 
   <div class="container">
 
-    <div class="row">
-      <!-- DEFINITION CARD -->
-      <div class="col-sm-6 mb-3 mb-sm-0">
-        <div class="card">
-          <div class="card-body">
-            <!-- ES: Changed this from link element to a button element-->
-            <button id="generate-definition">Generate Definition</button>
-            <section class="result-container">
-              <!-- <h3 result-title>Definition:</h3> -->
-              <div id="definition-result">
-                <!-- BOOTSTRAP SPINNER (for loading) -->
-                <div class="spinner-border invisible" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                <p id="definition"></p>
+      <!-- <div class="row"> -->
+    <!-- DEFINITION CARD -->
+    <!-- <div class="col-sm-6 mb-3 mb-sm-0"> -->
+      <div class="card">
+        <div class="card-body">
+          <!-- ES: Changed this from link element to a button element-->
+          <button id="generate-definition">Generate Definition</button>
+          <section class="result-container">
+            <!-- <h3 result-title>Definition:</h3> -->
+            <div id="definition-result">
+              <!-- BOOTSTRAP SPINNER (for loading) -->
+              <div class="spinner-border invisible" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
-            </section>
-          </div>
+              <p id="definition"></p>
+            </div>
+          </section>
         </div>
       </div>
+    <!-- </div> -->
 
-      <div class="col-sm-6">
-        <!-- POEM CARD -->
-        <div class="card">
-          <div class="card-body">
-            <!-- ES: Changed this from link element to a button element-->
-            <button id="generate-poem">Generate Poetry</button>
-            <section class="poetry-container">
-              <!-- <h3 id="result-title">Poetry:</h3> -->
-              <div id="poem-result">
-                <!-- BOOTSTRAP SPINNER (for loading) -->
-                <div class="spinner-border invisible" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                <p id="poem-info"></p>
-                <p id="poem-lines"></p>
+    <!-- <div class="col-sm-6"> -->
+      <!-- POEM CARD -->
+      <div class="card">
+        <div class="card-body">
+          <!-- ES: Changed this from link element to a button element-->
+          <button id="generate-poem">Generate Poetry</button>
+          <section class="poetry-container">
+            <!-- <h3 id="result-title">Poetry:</h3> -->
+            <div id="poem-result">
+              <!-- BOOTSTRAP SPINNER (for loading) -->
+              <div class="spinner-border invisible" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
-            </section>
-          </div>
+              <p id="poem-info"></p>
+              <p id="poem-lines"></p>
+            </div>
+          </section>
         </div>
       </div>
     </div>
+   <!-- </div> -->
   </div>
+</div>
+
 
   <!-- WORD HISTORY SECTION (for word history buttons) -->
 
