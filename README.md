@@ -63,9 +63,9 @@ Further to the user story, LinguaSonnet’s primary audience is people studying 
 
 #### Planning
 
-* *Tasks:* identify the required tasks to build the project and the roles each project team member will take, create a Kanban Board with GitHub Projects to help visualise this and track progress.
+* *Tasks:* identify the required tasks to build the project and the roles each project team member will take, create a [Kanban Board](https://github.com/users/Code0Em/projects/2) with GitHub Projects to help visualise this and track progress.
 
-* *Wireframes:* create a visual representation of the project's interface, and create subsequent iterations/versions of this (as required).
+* *Wireframes:* create a [visual representation of the project's interface](#wireframes), and create subsequent iterations/versions of this (as required).
 
 #### Build
 
@@ -149,7 +149,7 @@ N/A
 
 ## Credits
 
-Credits have been included in the code comments and cited above (under [Design Resources](#design-resources)) and below (under [References](#references)).
+Credits have been included in the code comments of the `javascript` file and cited above (under [Design Resources](#design-resources)) and below (under [References](#references)).
 
 ## License
 
@@ -159,9 +159,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 The project team conceptualised, designed and built _“LinguaSonnet”._
 
-The team consists of @codeswitchstudio, @Code0Em and @Sandesh2034.
+The team consists of [@codeswitchstudio](https://github.com/codeswitchstudio), [@Code0Em](https://github.com/Code0Em) and [@Sandesh2034](https://github.com/Sandesh2034).
 
 ## References
+
+ChatGPT (2024) (https://chat.openai.com/chat).
 
 Stack Overflow (2016) [*Fetch resolves even if 404?*](https://stackoverflow.com/questions/39297345/fetch-resolves-even-if-404).
 
