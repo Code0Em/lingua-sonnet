@@ -33,6 +33,8 @@
 
 // TASK 17: Create an event listener, so that when the user selects the logo (in the navbar) the page reloads.
 
+// TASK 18: Create an event listener for load event, so that when the page loads, previous "word history" buttons are displayed.
+
 // **GLOBAL VARIABLES**
 // Gets references for all of the HTML elements that we need.
 const poemText = document.getElementById("poem-lines");
@@ -302,7 +304,34 @@ wordHistSection.addEventListener("click", function (e) {
 });
 
 // TASK 17: Listens for click event on on the logo-icon.
-logoIcon.addEventListener('click', function() {
-  // Reloads the page when the logo-icon is clicked
-  location.reload();
+logoIcon.addEventListener('click', function () {
+    // Reloads the page when the logo-icon is clicked
+    location.reload();
+});
+
+// TASK 18: "Listens" for load event on the window (i.e. page load or refresh) and displays any existing "word history" buttons.
+window.addEventListener("load", function () {
+    // If local storage is empty (i.e. no previous "word history" buttons), run this codeblock:
+    if (localStorage.length === 0) {
+        // Gets us out of the function (i.e. returns nothing).
+        return
+    } else {
+        // Loops through each key/value in the local storage.
+        for (let i = 0; i < localStorage.length; i++) {
+            // Sets the key name.
+            const key = localStorage.key(i);
+            // Uses the key name to retrieve the corresponding value.
+            const value = localStorage.getItem(key);
+            // Creates a new button.
+            const newBtn = document.createElement("button");
+            // Sets the text of the button to the key (i.e. previous user word).
+            newBtn.textContent = key;
+            // Adds classes to button (for Bootstrap styling and for event listener).
+            newBtn.classList.add("btn", "hist-btn", "word-history");
+            // Appends button to section element.
+            wordHistSection.append(newBtn);
+            // Pushes the button's text up to array (so we can check it/when it's searched again).
+            btnsText.push(newBtn.textContent);
+        }
+    }
 });
