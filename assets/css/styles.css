@@ -1,19 +1,15 @@
 :root {
   --yellow: #FBC202;
-  ;
   --white: #ffffff;
   --aqua: #02f3fb;
   --blue: #35abcf;
   --bg-modaltop: #8ecae6;
   --bg-top: #212D49; 
   --bg-red-btn: #EF4136;
-  
 
   --cursive: 'Rochester', cursive;
-  ;
   --serif: 'Solway', serif;
   --serif-body: 'Noto Serif', serif;
-
 }
 
 body {
@@ -40,7 +36,6 @@ body {
 
 #modal-btn {
   background-color: var(--yellow);
-  /* font-family: var(--serif); */
 }
 
 h1 {
@@ -49,7 +44,7 @@ h1 {
   font-size: 96px;
 }
 
-/* ==============================Navbar Styles================== */
+/* =====================Navbar Styles================== */
 
 .navbar {
   background-color: #333;
@@ -82,7 +77,6 @@ h1 {
   font-family: var(--cursive);
   color: var(--white);
   padding-right: 20px;
-  /* margin-top: 10px ; */
 }
 
 .history-link {
@@ -104,7 +98,6 @@ h1 {
 
 .navbar ul li {
   display: inline-block;
-  /* margin-left: 5px; */
   text-decoration: none;
 }
 
@@ -132,7 +125,7 @@ h1 {
   }
 }
 
-/* ==============================Hero Styles================== */
+/* ====================Hero Styles================== */
 
 h1 {
   text-align: left;
@@ -147,7 +140,6 @@ h1 {
   background-repeat: no-repeat;
   background-color: #212D49;
   color: var(--yellow);
-  ;
 }
 
 .subtitle {
@@ -180,20 +172,17 @@ button {
 }
 #confirm-msg {
   font-family: var(--serif);
-
 }
 
 poemText {
   font-family: var(--serif);
 }
 
-/* ES: Added styling to the input field, so this is bigger */
 .input-box {
   width: 300px;
   height: 50px;
 }
 
-/* added to input as the text was at 0 margin */
 input {
   padding: 5px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -208,20 +197,26 @@ label {
   padding-bottom: 10px;
 }
 
-/* ==============================End of Hero Styles================== */
-/* Definition Container Styles */
+/* ======================Definition Container Styless================== */
+
+.bottom-half {
+  background-color: var(--white);
+}
+
 .card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.card-body {
+  font-family: var(--serif);
+}
+
+#definition {
+  line-height: 1.6;
+} 
+
 .definition-container {
   padding-top: 20px
-    /* margin-bottom: 20px;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 #inputText {
@@ -237,7 +232,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  color: white;
+  color: var(--white);
 }
 
 #generate-definition {
@@ -247,7 +242,6 @@ button {
 #generate-definition:hover {
   background-color: #45a049;
 }
-
 
 #generate-poem {
   background-color: #2196F3;
@@ -281,14 +275,14 @@ button {
   color: navy;
 }
 
-/* Result Container Styles */
+/* ====================Result Container Styles==================== */
+
 .result-container {
   margin-bottom: 20px;
   max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 .poetry-container {
@@ -297,7 +291,6 @@ button {
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 #DefinationResult,
@@ -306,8 +299,8 @@ button {
   border: 1px solid #ddd;
 }
 
+/* ====================Poetry Container Styles==================== */
 
-/* Poetry Container Styles */
 .card {
   margin-bottom: 25px;
 }
@@ -320,6 +313,13 @@ button {
 .poetry-container button:hover {
   background-color: #0b7dda;
 }
+
+#poem-info {
+  font-family: var(--cursive); font-size: x-large;
+}
+
+
+/* ====================Word History Styles==================== */
 
 .word-container {
   margin-bottom: 20px;
@@ -337,19 +337,3 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
-.bottom-half {
-  background-color: var(--white);
-}
-
-#poem-info {
-  font-family: var(--cursive); font-size: x-large;
-}
-
-.card-body {
-   font-family: var(--serif);
- }
-
- #definition {
-  line-height: 1.6;
-} 
